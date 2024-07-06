@@ -157,6 +157,14 @@ public class TileMapGameObjectController : MonoBehaviour
     #endregion
 
     #region 地块生成
+    [Button("初始化Grid")]
+    public void InitGenerateGridGO()
+    {
+        ClearGeneratedObjects();
+        GenerateOffsetsAndNoise();
+        GenerateGameObjectsFromTiles();
+    }
+
     [Button("读取地图数据")]
     public void ReGenerateGridGO()
     {
