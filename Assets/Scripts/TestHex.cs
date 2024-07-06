@@ -28,7 +28,7 @@ public class TestHex : MonoBehaviour
             // Vector3Int targetPosition=manager.move(gridPosition, direction);
             // head.transform.position=grid.CellToWorld(targetPosition);
             // body.transform.position=grid.CellToWorld(gridPosition+new Vector3Int(0,0,1));
-            // Debug.Log(gridPosition.ToString()+"->"+targetPosition.ToString());
+            Debug.Log(gridPosition.ToString());
         }
         if(Input.GetKeyDown(KeyCode.Alpha0)){
             direction=0;
