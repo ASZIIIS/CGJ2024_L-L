@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\LoadScene.cs" />
     <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
     <Compile Include="Assets\Addons\Sirenix\Odin Validator\EnsureCorrectOdinVersion.cs" />
+    <Compile Include="Assets\Scripts\Tilemap\TileToGameObjectConverter.cs" />
     <Compile Include="Assets\Scripts\Sound\VolumeSlider.cs" />
     <Compile Include="Assets\Scripts\Tilemap\Perlin.cs" />
     <Compile Include="Assets\Scripts\AnimEffect\GridAnimEvent.cs" />

@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
+
 public class TileMapGameObjectController : MonoBehaviour
 {
     [Header("瓦片")]
@@ -21,7 +22,6 @@ public class TileMapGameObjectController : MonoBehaviour
 
     public float smallObjectProbability = 0.2f; // 小物体生成的概率
 
-
     public Vector2Int FilpStartPos;
     [FoldoutGroup("随机噪声")]
     public float noiseScale1 = 0.1f; // 噪声1的缩放
@@ -34,7 +34,7 @@ public class TileMapGameObjectController : MonoBehaviour
 
     private Vector2 randomOffset1;
     private Vector2 randomOffset2;
-    
+
     void Start()
     {
         InstorageTileMapData();
@@ -56,7 +56,7 @@ public class TileMapGameObjectController : MonoBehaviour
             string[] _indexs = _gridTransf.name.Split("_");
             int _index1 = int.Parse(_indexs[1]);
             int _index2 = int.Parse(_indexs[2]);
-            TileMapData[new Vector2(_index1,_index2)] = _gridTransf.gameObject;
+            TileMapData[new Vector2(_index1, _index2)] = _gridTransf.gameObject;
         }
     }
     /// <summary>
@@ -74,8 +74,7 @@ public class TileMapGameObjectController : MonoBehaviour
         return null;
     }
     #endregion
-    
-    
+
     #region 动画切换
     public void FilpAllTile(Vector2Int _startPos)
     {
@@ -85,59 +84,59 @@ public class TileMapGameObjectController : MonoBehaviour
     //4-- -6
     IEnumerator FilpFromUpToBottom()
     {
-         Dictionary<int, List<Animator>> animDic = new Dictionary<int, List<Animator>>();
-         foreach (Transform _gridTransf in gridParentTransf)
-         {
-             int _index = int.Parse(_gridTransf.name.Split("_")[1]);
-             if (!animDic.ContainsKey(_index))
-             {
-                 animDic[_index] = new List<Animator>();
-             }
-             animDic[_index].Add(_gridTransf.GetComponent<Animator>());
-         }
-         for (int i = 4;i>=-6;i--)
-         {
-             List<Animator> _animList = animDic[i];
-             foreach (var _anim in _animList)
-             {
-                 _anim.Play("Grid_Filp1");
-             }
-             yield return new WaitForSeconds(flipTimeSplit);
-         }
+        Dictionary<int, List<Animator>> animDic = new Dictionary<int, List<Animator>>();
+        foreach (Transform _gridTransf in gridParentTransf)
+        {
+            int _index = int.Parse(_gridTransf.name.Split("_")[1]);
+            if (!animDic.ContainsKey(_index))
+            {
+                animDic[_index] = new List<Animator>();
+            }
+            animDic[_index].Add(_gridTransf.GetComponent<Animator>());
+        }
+        for (int i = 4; i >= -6; i--)
+        {
+            List<Animator> _animList = animDic[i];
+            foreach (var _anim in _animList)
+            {
+                _anim.Play("Grid_Filp1");
+            }
+            yield return new WaitForSeconds(flipTimeSplit);
+        }
     }
+
     IEnumerator FilpAllTileIEnum(Vector2Int _startPos)
     {
-        
         List<Vector2Int> flipedSprite = new List<Vector2Int>();
-        
         //一轮
-        List<Vector2Int> _stack = new List<Vector2Int>();
-        _stack.Add(_startPos);
-        while (_stack!=null)
+        List<Vector2Int> _stack = new List<Vector2Int> { _startPos };
+        while (_stack.Count > 0)
         {
             List<Vector2Int> _tempStack = new List<Vector2Int>();
             foreach (var _vector2 in _stack)
             {
-                flipedSprite.Add(_vector2);
-                //有该数据并且还未反转过
-                TileMapData[_vector2].GetComponent<Animator>().Play("Grid_Filp1");
-
-                var _aroundGrids = GridManager.getAroundGrids(_vector2);
-                foreach (var _aroundGrid in _aroundGrids)
+                if (TileMapData.ContainsKey(_vector2))
                 {
-                    if (TileMapData.ContainsKey(_aroundGrid) && !flipedSprite.Contains(_aroundGrid))
+                    flipedSprite.Add(_vector2);
+                    //有该数据并且还未反转过
+                    TileMapData[_vector2].GetComponent<Animator>().Play("Grid_Filp1");
+
+                    var _aroundGrids = GridManager.getAroundGrids(_vector2);
+                    foreach (var _aroundGrid in _aroundGrids)
                     {
-                        _tempStack.Add(_aroundGrid);
+                        if (TileMapData.ContainsKey(_aroundGrid) && !flipedSprite.Contains(_aroundGrid))
+                        {
+                            _tempStack.Add(_aroundGrid);
+                        }
                     }
                 }
             }
             _stack = _tempStack;
-            
             yield return new WaitForSeconds(flipTimeSplit);
         }
     }
     #endregion
-    
+
     #region 地块生成
     [Button("重新生成地面物体")]
     public void ReGenerateGridGO()
@@ -146,7 +145,7 @@ public class TileMapGameObjectController : MonoBehaviour
         GenerateOffsetsAndNoise();
         GenerateGameObjectsFromTiles();
     }
-    
+
     void GenerateOffsetsAndNoise()
     {
         // 初始化随机偏移
@@ -206,13 +205,12 @@ public class TileMapGameObjectController : MonoBehaviour
 
     void ClearGeneratedObjects()
     {
-        for (int i = gridParentTransf.childCount-1; i >= 0; i--)
+        for (int i = gridParentTransf.childCount - 1; i >= 0; i--)
         {
-            DestroyImmediate(gridParentTransf.GetChild(i).gameObject); 
+            DestroyImmediate(gridParentTransf.GetChild(i).gameObject);
         }
-        
+
         generatedObjects.Clear(); // 清空列表
     }
     #endregion
-    
 }
