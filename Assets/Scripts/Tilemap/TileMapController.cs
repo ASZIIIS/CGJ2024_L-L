@@ -144,15 +144,11 @@ public class TileMapController : MonoBehaviour
 
     void ClearGeneratedObjects()
     {
-        if (generatedObjects != null)
+        foreach (Transform _child in gridParentTransf)
         {
-            foreach (GameObject obj in generatedObjects)
-            {
-                DestroyImmediate(obj); // 销毁生成的GameObject
-            }
-            generatedObjects.Clear(); // 清空列表
+            DestroyImmediate(_child.gameObject); 
         }
-        
+        generatedObjects.Clear(); // 清空列表
     }
     #endregion
 
