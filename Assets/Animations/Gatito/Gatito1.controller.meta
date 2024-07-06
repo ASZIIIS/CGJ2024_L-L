@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Animations/Gatito/Gatito1.controller.meta
+guid: 191f426688acdea49bc9e3fd0a1bb8ec
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+=======
+guid: d7dd54d0f40ad5249a7f7995585e8baa
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+>>>>>>> f977c9f183b0e0c6942b4d8243832391285319c2:Assets/Addons/Sirenix/Odin Inspector/Config/Editor/InspectorConfig.asset.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
