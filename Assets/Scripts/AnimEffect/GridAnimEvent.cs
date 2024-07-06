@@ -27,11 +27,13 @@ public class GridAnimEvent : MonoBehaviour
             case 2:
                 _targetSprite = level2TargetSprite;
                 break;
+            default:
+                return;
         }
         GetComponentInChildren<SpriteRenderer>().sprite = _targetSprite;
 
         //删除旧的小物体，新建新的小物体
-        tileMapController.ReGenerateGridGO();
+        tileMapController.ReGenerateSmallGameObject(transform);
     }
      
 }
