@@ -1,41 +1,90 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class TileMapController : MonoBehaviour
 {
+    [Header("瓦片")]
     public Tilemap tilemap; // 需要手动将Tilemap对象拖拽到此字段
-    public GameObject[] tilePrefabs; // 用于生成Tile的GameObject预制件数组
+    public Sprite[] TileSprites; // 用于生成Tile的GameObject预制件数组
+    public GameObject TilePrefab;
+
+
+    private List<GameObject> generatedObjects = new List<GameObject>(); // 存储生成的GameObject
+
+    public Transform gridParentTransf; //
+    [Header("小物体")]
+    public GameObject[] smallObjectsPrefabs; // 用于生成小物体的预制件数组
+
+    public float smallObjectProbability = 0.2f; // 小物体生成的概率
+
+    [FoldoutGroup("随机噪声")]
     public float noiseScale1 = 0.1f; // 噪声1的缩放
+    [FoldoutGroup("随机噪声")]
     public float noiseScale2 = 0.05f; // 噪声2的缩放
+    [FoldoutGroup("随机噪声")]
     public float noiseWeight1 = 0.5f; // 噪声1的权重
+    [FoldoutGroup("随机噪声")]
     public float noiseWeight2 = 0.5f; // 噪声2的权重
 
     private Vector2 randomOffset1;
     private Vector2 randomOffset2;
-
-    private List<GameObject> generatedObjects = new List<GameObject>(); // 存储生成的GameObject
-    private GameObject currentParentObject; //
-    public GameObject[] smallObjectsPrefabs; // 用于生成小物体的预制件数组
-    public float smallObjectProbability = 0.2f; // 小物体生成的概率
-
+    
     void Start()
     {
-        GenerateOffsetsAndNoise();
-        GenerateGameObjectsFromTiles();
+
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ClearGeneratedObjects();
-            GenerateOffsetsAndNoise();
-            GenerateGameObjectsFromTiles();
+            StartCoroutine(FilpAllTile());
         }
     }
 
+    #region 动画切换
+
+    public float flipTimeSplit = 0.5f;
+    //4-- -6
+    IEnumerator FilpAllTile()
+    {
+        Dictionary<int, List<Animator>> animDic = new Dictionary<int, List<Animator>>();
+        foreach (Transform _gridTransf in gridParentTransf)
+        {
+            int _index = int.Parse(_gridTransf.name.Split("_")[1]);
+            if (!animDic.ContainsKey(_index))
+            {
+                animDic[_index] = new List<Animator>();
+            }
+            animDic[_index].Add(_gridTransf.GetComponent<Animator>());
+        }
+        
+        for (int i = 4;i>=-6;i--)
+        {
+            List<Animator> _animList = animDic[i];
+            foreach (var _anim in _animList)
+            {
+                _anim.Play("Grid_Filp1");
+            }
+            yield return new WaitForSeconds(flipTimeSplit);
+        }
+    }
+    #endregion
+    
+    #region 地块生成
+    [Button("重新生成地面物体")]
+    public void ReGenerateGridGO()
+    {
+        ClearGeneratedObjects();
+        GenerateOffsetsAndNoise();
+        GenerateGameObjectsFromTiles();
+    }
+    
     void GenerateOffsetsAndNoise()
     {
         // 初始化随机偏移
@@ -51,10 +100,6 @@ public class TileMapController : MonoBehaviour
 
     void GenerateGameObjectsFromTiles()
     {
-        // 创建一个新的父级Object
-        currentParentObject = new GameObject("GeneratedObjects_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss"));
-        currentParentObject.transform.parent = this.transform;
-
         BoundsInt bounds = tilemap.cellBounds;
         TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
 
@@ -73,14 +118,14 @@ public class TileMapController : MonoBehaviour
                     float noiseValue2 = Mathf.PerlinNoise((x + randomOffset2.x) * noiseScale2, (y + randomOffset2.y) * noiseScale2);
                     float combinedNoiseValue = noiseValue1 * noiseWeight1 + noiseValue2 * noiseWeight2;
 
-                    int prefabIndex = Mathf.FloorToInt(combinedNoiseValue * tilePrefabs.Length);
-                    if (prefabIndex >= tilePrefabs.Length)
+                    int prefabIndex = Mathf.FloorToInt(combinedNoiseValue * TileSprites.Length);
+                    if (prefabIndex >= TileSprites.Length)
                     {
-                        prefabIndex = tilePrefabs.Length - 1;
+                        prefabIndex = TileSprites.Length - 1;
                     }
 
-                    GameObject randomPrefab = tilePrefabs[prefabIndex];
-                    GameObject tileGO = Instantiate(randomPrefab, place, Quaternion.identity, currentParentObject.transform);
+                    GameObject tileGO = Instantiate(TilePrefab, place, Quaternion.identity, gridParentTransf);
+                    tileGO.GetComponent<GridSingle>().Init(TileSprites[prefabIndex]);
                     tileGO.name = "Tile_" + localPlace.x + "_" + localPlace.y;
 
                     generatedObjects.Add(tileGO); // 将生成的GameObject添加到列表中
@@ -99,15 +144,16 @@ public class TileMapController : MonoBehaviour
 
     void ClearGeneratedObjects()
     {
-        foreach (GameObject obj in generatedObjects)
+        if (generatedObjects != null)
         {
-            Destroy(obj); // 销毁生成的GameObject
+            foreach (GameObject obj in generatedObjects)
+            {
+                DestroyImmediate(obj); // 销毁生成的GameObject
+            }
+            generatedObjects.Clear(); // 清空列表
         }
-        generatedObjects.Clear(); // 清空列表
-
-        if (currentParentObject != null)
-        {
-            Destroy(currentParentObject); // 销毁父级Object
-        }
+        
     }
+    #endregion
+
 }
