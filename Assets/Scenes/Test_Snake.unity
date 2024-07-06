@@ -1716,9 +1716,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardTimer: 0
-  forwardPeriod: 0
+  forwardPeriod: 20
   waveTimer: 0
-  wavePeriod: 0
+  wavePeriod: 400
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
