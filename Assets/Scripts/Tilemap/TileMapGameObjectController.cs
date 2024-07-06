@@ -6,13 +6,13 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
-public class TileMapController : MonoBehaviour
+public class TileMapGameObjectController : MonoBehaviour
 {
     [Header("瓦片")]
     public Tilemap tilemap; // 需要手动将Tilemap对象拖拽到此字段
     public Sprite[] TileSprites; // 用于生成Tile的GameObject预制件数组
     public GameObject TilePrefab;
-
+    public Dictionary<Vector2, GameObject> TileMapData = new Dictionary<Vector2, GameObject>();
 
     private List<GameObject> generatedObjects = new List<GameObject>(); // 存储生成的GameObject
 
@@ -22,6 +22,8 @@ public class TileMapController : MonoBehaviour
 
     public float smallObjectProbability = 0.2f; // 小物体生成的概率
 
+
+    public Vector2 FilpStartPos;
     [FoldoutGroup("随机噪声")]
     public float noiseScale1 = 0.1f; // 噪声1的缩放
     [FoldoutGroup("随机噪声")]
@@ -36,41 +38,72 @@ public class TileMapController : MonoBehaviour
     
     void Start()
     {
-
+        InstorageTileMapData();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(FilpAllTile());
+            FilpAllTile(FilpStartPos);
         }
     }
 
-    #region 动画切换
-
-    public float flipTimeSplit = 0.5f;
-    //4-- -6
-    IEnumerator FilpAllTile()
+    void InstorageTileMapData()
     {
-        Dictionary<int, List<Animator>> animDic = new Dictionary<int, List<Animator>>();
         foreach (Transform _gridTransf in gridParentTransf)
         {
-            int _index = int.Parse(_gridTransf.name.Split("_")[1]);
-            if (!animDic.ContainsKey(_index))
-            {
-                animDic[_index] = new List<Animator>();
-            }
-            animDic[_index].Add(_gridTransf.GetComponent<Animator>());
+            string[] _indexs = _gridTransf.name.Split("_");
+            int _index1 = int.Parse(_indexs[1]);
+            int _index2 = int.Parse(_indexs[2]);
+            TileMapData[new Vector2(_index1,_index2)] = _gridTransf.gameObject;
         }
-        
-        for (int i = 4;i>=-6;i--)
+    }
+    
+    #region 动画切换
+    public void FilpAllTile(Vector2 _startPos)
+    {
+        StartCoroutine(FilpAllTileIEnum(_startPos));
+    }
+    public float flipTimeSplit = 0.5f;
+    //4-- -6
+    IEnumerator FilpAllTileIEnum(Vector2 _startPos)
+    {
+        // Dictionary<int, List<Animator>> animDic = new Dictionary<int, List<Animator>>();
+        // foreach (Transform _gridTransf in gridParentTransf)
+        // {
+        //     int _index = int.Parse(_gridTransf.name.Split("_")[1]);
+        //     if (!animDic.ContainsKey(_index))
+        //     {
+        //         animDic[_index] = new List<Animator>();
+        //     }
+        //     animDic[_index].Add(_gridTransf.GetComponent<Animator>());
+        // }
+        ///从上到下
+        // for (int i = 4;i>=-6;i--)
+        // {
+        //     List<Animator> _animList = animDic[i];
+        //     foreach (var _anim in _animList)
+        //     {
+        //         _anim.Play("Grid_Filp1");
+        //     }
+        //     yield return new WaitForSeconds(flipTimeSplit);
+        // }
+        List<Vector2> _stack = new List<Vector2>();
+        _stack.Add(_startPos);
+        while (_stack!=null)
         {
-            List<Animator> _animList = animDic[i];
-            foreach (var _anim in _animList)
+            List<Vector2> _tempStack = new List<Vector2>();
+            foreach (var _vector2 in _stack)
             {
-                _anim.Play("Grid_Filp1");
+                if (TileMapData.ContainsKey(_vector2))
+                {
+                    TileMapData[_vector2].GetComponent<Animator>().Play("Grid_Filp1");
+                    
+                }
             }
+            
+            
             yield return new WaitForSeconds(flipTimeSplit);
         }
     }
@@ -144,10 +177,11 @@ public class TileMapController : MonoBehaviour
 
     void ClearGeneratedObjects()
     {
-        foreach (Transform _child in gridParentTransf)
+        for (int i = gridParentTransf.childCount-1; i >= 0; i--)
         {
-            DestroyImmediate(_child.gameObject); 
+            DestroyImmediate(gridParentTransf.GetChild(i).gameObject); 
         }
+        
         generatedObjects.Clear(); // 清空列表
     }
     #endregion
