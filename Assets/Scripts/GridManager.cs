@@ -69,7 +69,7 @@ public class GridManager
                     targetY=1-size;
                     outBound=true;
                 }else{
-                    targetX=x-((Mathf.Abs(y)+1)%2);
+                    targetX=x-(Mathf.Abs(y+1)%2);
                     targetY=y+1;
                 }
                 break;
@@ -118,5 +118,27 @@ public class GridManager
             return new Vector3Int(targetX, targetY, -9);
         }
     }
-    
+    public static Vector3Int[] getAroundGrids(Vector3Int gridPosition){
+        Vector3Int[] gridList=new Vector3Int[6];
+        for(int i=0;i<6;++i){
+            gridList[i]=gridPosition;
+        }
+        //Up
+        gridList[0].x+=1;
+        //RightUp
+        gridList[1].x+=Mathf.Abs(gridPosition.y)%2;
+        gridList[1].y+=1;
+        //RightDown
+        gridList[2].x-=Mathf.Abs(gridPosition.y+1)%2;
+        gridList[2].y+=1;
+        //Down
+        gridList[3].x-=1;
+        //LeftDown
+        gridList[4].x-=(Mathf.Abs(gridPosition.y+1)%2);
+        gridList[4].y-=1;
+        //LeftUp
+        gridList[5].x-=(Mathf.Abs(gridPosition.y)%2);
+        gridList[5].y-=1;
+        return gridList;
+    }
 }
