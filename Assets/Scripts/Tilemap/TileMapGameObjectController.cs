@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.WSA;
 using Random = UnityEngine.Random;
 
 public class TileMapGameObjectController : MonoBehaviour
@@ -18,7 +20,9 @@ public class TileMapGameObjectController : MonoBehaviour
 
     public Transform gridParentTransf; //
     [Header("小物体")]
-    public GameObject[] smallObjectsPrefabs; // 用于生成小物体的预制件数组
+    public GameObject[] smallObjectsPrefabsLevel1;
+    public GameObject[] smallObjectLevel2;
+    public GameObject[] smallObjectLevel3; // 用于生成小物体的预制件数组
 
     public float smallObjectProbability = 0.2f; // 小物体生成的概率
 
@@ -35,6 +39,9 @@ public class TileMapGameObjectController : MonoBehaviour
     private Vector2 randomOffset1;
     private Vector2 randomOffset2;
 
+
+    public static int CurLevel = 1;
+    public static bool isLoadLevel = false;
     void Start()
     {
         InstorageTileMapData();
@@ -81,37 +88,42 @@ public class TileMapGameObjectController : MonoBehaviour
         StartCoroutine(FilpAllTileIEnum(_startPos));
     }
     public float flipTimeSplit = 0.5f;
-    //4-- -6
-    IEnumerator FilpFromUpToBottom()
-    {
-        Dictionary<int, List<Animator>> animDic = new Dictionary<int, List<Animator>>();
-        foreach (Transform _gridTransf in gridParentTransf)
-        {
-            int _index = int.Parse(_gridTransf.name.Split("_")[1]);
-            if (!animDic.ContainsKey(_index))
-            {
-                animDic[_index] = new List<Animator>();
-            }
-            animDic[_index].Add(_gridTransf.GetComponent<Animator>());
-        }
-        for (int i = 4; i >= -6; i--)
-        {
-            List<Animator> _animList = animDic[i];
-            foreach (var _anim in _animList)
-            {
-                _anim.Play("Grid_Filp1");
-            }
-            yield return new WaitForSeconds(flipTimeSplit);
-        }
-    }
+    
+    // 从上到下反转地图  4-- -6
+    //IEnumerator FilpFromUpToBottom()
+    //{
+    //    Dictionary<int, List<Animator>> animDic = new Dictionary<int, List<Animator>>();
+    //    foreach (Transform _gridTransf in gridParentTransf)
+    //    {
+    //        int _index = int.Parse(_gridTransf.name.Split("_")[1]);
+    //        if (!animDic.ContainsKey(_index))
+    //        {
+    //            animDic[_index] = new List<Animator>();
+    //        }
+    //        animDic[_index].Add(_gridTransf.GetComponent<Animator>());
+    //    }
+    //    for (int i = 4; i >= -6; i--)
+    //    {
+    //        List<Animator> _animList = animDic[i];
+    //        foreach (var _anim in _animList)
+    //        {
+    //            _anim.Play("Grid_Filp1");
+    //        }
+    //        yield return new WaitForSeconds(flipTimeSplit);
+    //    }
+    //}
+
 
     IEnumerator FilpAllTileIEnum(Vector2Int _startPos)
     {
+        isLoadLevel = true;
+
         List<Vector2Int> flipedSprite = new List<Vector2Int>();
         //一轮
         List<Vector2Int> _stack = new List<Vector2Int> { _startPos };
         while (_stack.Count > 0)
         {
+            Debug.LogWarning($"Flip Stack Count:{_stack.Count}");
             List<Vector2Int> _tempStack = new List<Vector2Int>();
             foreach (var _vector2 in _stack)
             {
@@ -132,18 +144,37 @@ public class TileMapGameObjectController : MonoBehaviour
                 }
             }
             _stack = _tempStack;
+          
+            
             yield return new WaitForSeconds(flipTimeSplit);
         }
+
+        CurLevel++;
+        isLoadLevel = false;
+
+        //todo: 关卡加载结束，启用玩家交互
     }
     #endregion
 
     #region 地块生成
-    [Button("重新生成地面物体")]
+    [Button("读取地图数据")]
     public void ReGenerateGridGO()
     {
-        ClearGeneratedObjects();
-        GenerateOffsetsAndNoise();
-        GenerateGameObjectsFromTiles();
+        //ClearGeneratedObjects();
+        //GenerateOffsetsAndNoise();
+        //GenerateGameObjectsFromTiles();
+
+        Transform level1Transf = GameObject.Find("Level1").transform;
+        Transform level2Transf = GameObject.Find("Level2").transform;
+        Transform level3Transf = GameObject.Find("Level3").transform;
+
+        foreach (Transform _transf in gridParentTransf)
+        {
+            string _name = _transf.name;
+            _transf.Find("Sprite").GetComponent<SpriteRenderer>().sprite = level1Transf.Find(_name).GetComponent<SpriteRenderer>().sprite;
+            _transf.GetComponentInChildren<GridAnimEvent>().level1TargetSprite = level2Transf.Find(_name).GetComponent<SpriteRenderer>().sprite;
+            _transf.GetComponentInChildren<GridAnimEvent>().level2TargetSprite = level3Transf.Find(_name).GetComponent<SpriteRenderer>().sprite;
+        }
     }
 
     void GenerateOffsetsAndNoise()
@@ -190,17 +221,60 @@ public class TileMapGameObjectController : MonoBehaviour
                     tileGO.name = "Tile_" + localPlace.x + "_" + localPlace.y;
 
                     generatedObjects.Add(tileGO); // 将生成的GameObject添加到列表中
-                    if (Random.value < smallObjectProbability)
+
+                    GameObject[] _smallGoPrefabs = null;
+                    if(CurLevel == 1)
                     {
-                        int smallObjectIndex = Random.Range(0, smallObjectsPrefabs.Length);
-                        GameObject smallObjectPrefab = smallObjectsPrefabs[smallObjectIndex];
-                        Vector3 smallObjectPosition = place + new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
-                        GameObject smallObject = Instantiate(smallObjectPrefab, smallObjectPosition, Quaternion.identity, tileGO.transform);
-                        smallObject.name = "SmallObject_" + localPlace.x + "_" + localPlace.y;
+                        _smallGoPrefabs = smallObjectsPrefabsLevel1;
                     }
+                    else if(CurLevel == 2)
+                    {
+                        _smallGoPrefabs = smallObjectLevel2;
+                    }
+                    else if(CurLevel == 3)
+                    {
+                        _smallGoPrefabs = smallObjectLevel3;
+                    }
+
+
+
+
+                    int smallObjectIndex = Random.Range(0, _smallGoPrefabs.Length);
+                    GameObject smallObjectPrefab = _smallGoPrefabs[smallObjectIndex];
+
+                    Vector3 ObjectLocalPosition = new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
+                    GameObject smallObject = Instantiate(smallObjectPrefab, ObjectLocalPosition, Quaternion.identity, tileGO.transform);
+                    //smallObject.name = "SmallObject_" + localPlace.x + "_" + localPlace.y;
+                    smallObject.name = smallObjectName;
                 }
             }
         }
+    }
+    string smallObjectName = "SmallObject";
+    void ReGenerateSmallGameObject()
+    {
+        //清除旧的小物体
+        foreach(Transform _transf in gridParentTransf)
+        {
+            var _smallGo = _transf.Find(smallObjectName);
+            if(_smallGo != null)
+            {
+                Destroy(_smallGo);
+            }
+
+            //生成新的小物体
+            if (Random.value < smallObjectProbability)
+            {
+                int smallObjectIndex = Random.Range(0, smallObjectsPrefabsLevel1.Length);
+                GameObject smallObjectPrefab = smallObjectsPrefabsLevel1[smallObjectIndex];
+                Vector3 smallObjectLocalPosition = new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
+                GameObject smallObject = Instantiate(smallObjectPrefab,Vector3.zero , Quaternion.identity, _transf);
+                smallObject.transform.localPosition = smallObjectLocalPosition;
+
+                //smallObject.name = "SmallObject_" + localPlace.x + "_" + localPlace.y;
+            }
+        }
+
     }
 
     void ClearGeneratedObjects()
