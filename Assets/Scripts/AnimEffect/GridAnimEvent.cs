@@ -27,6 +27,8 @@ public class GridAnimEvent : MonoBehaviour
             case 2:
                 _targetSprite = level2TargetSprite;
                 break;
+            default:
+                return;
         }
         GetComponentInChildren<SpriteRenderer>().sprite = _targetSprite;
 

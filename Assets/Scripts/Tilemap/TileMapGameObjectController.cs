@@ -164,6 +164,7 @@ public class TileMapGameObjectController : MonoBehaviour
         GenerateGameObjectsFromTiles();
     }
 
+    private string spriteName = "Sprite";
     [Button("读取地图数据")]
     public void LoadGridData()
     {
@@ -178,14 +179,10 @@ public class TileMapGameObjectController : MonoBehaviour
             _transf.GetComponentInChildren<GridAnimEvent>().level1TargetSprite = level2Transf.Find(_name).GetComponent<SpriteRenderer>().sprite;
             _transf.GetComponentInChildren<GridAnimEvent>().level2TargetSprite = level3Transf.Find(_name).GetComponent<SpriteRenderer>().sprite;
 
-
-            for(int i = _transf.childCount-1;i>=0;i--)
+            Transform _transfChild = _transf.Find(spriteName);
+            for(int i = _transfChild.childCount-1;i>=0;i--)
             {
-                Transform _tranfChild = _transf.GetChild(i);
-                if (_tranfChild.name.StartsWith("Small"))
-                {
-                    DestroyImmediate(_tranfChild.gameObject);
-                }
+                DestroyImmediate(_transfChild.GetChild(i).gameObject);
             }
             // var _smallGo = _transf.Find(smallObjectName);
             // if (_smallGo != null)
@@ -216,6 +213,7 @@ public class TileMapGameObjectController : MonoBehaviour
                 Vector3 ObjectLocalPosition = new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
                 GameObject smallObject = Instantiate(smallObjectPrefab, Vector3.zero,Quaternion.identity, _transf);
                 smallObject.transform.localPosition = ObjectLocalPosition;
+                smallObject.transform.SetParent(_transf.Find("Sprite"));
                 //smallObject.name = "SmallObject_" + localPlace.x + "_" + localPlace.y;
                 smallObject.name = smallObjectName;
             }
@@ -274,13 +272,14 @@ public class TileMapGameObjectController : MonoBehaviour
     string smallObjectName = "SmallObject";
     public void ReGenerateSmallGameObject(Transform _transf)
     {
-        //清除旧的小物体
-        var _smallGo = _transf.Find(smallObjectName);
-        if(_smallGo != null)
+        //清除旧的小物体和铁轨
+        Transform _transfChild = _transf.Find(spriteName);
+        for(int i = _transfChild.childCount-1;i>=0;i--)
         {
-            Destroy(_smallGo.gameObject);
+            Destroy(_transfChild.GetChild(i).gameObject);
         }
-
+        
+        
         //生成新的小物体
         if (Random.value < smallObjectProbability)
         {
@@ -289,7 +288,8 @@ public class TileMapGameObjectController : MonoBehaviour
             Vector3 smallObjectLocalPosition = new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
             GameObject smallObject = Instantiate(smallObjectPrefab,Vector3.zero , Quaternion.identity, _transf);
             smallObject.transform.localPosition = smallObjectLocalPosition;
-
+            smallObject.transform.SetParent(_transf.Find("Sprite"));
+            smallObject.transform.localRotation = Quaternion.identity;
             //smallObject.name = "SmallObject_" + localPlace.x + "_" + localPlace.y;
         }
     }
