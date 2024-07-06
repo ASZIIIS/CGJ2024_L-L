@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
@@ -35,7 +34,9 @@ public class TileMapGameObjectController : MonoBehaviour
 
     private Vector2 randomOffset1;
     private Vector2 randomOffset2;
-    
+
+    public GameObject directionMarkerPrefab; // 路标预制件
+
     void Start()
     {
         InstorageTileMapData();
@@ -47,6 +48,10 @@ public class TileMapGameObjectController : MonoBehaviour
         {
             FilpAllTile(FilpStartPos);
         }
+        else if (Input.GetMouseButtonDown(0))
+        {
+            PlaceDirectionMarker();
+        }
     }
 
     void InstorageTileMapData()
@@ -56,10 +61,10 @@ public class TileMapGameObjectController : MonoBehaviour
             string[] _indexs = _gridTransf.name.Split("_");
             int _index1 = int.Parse(_indexs[1]);
             int _index2 = int.Parse(_indexs[2]);
-            TileMapData[new Vector2(_index1,_index2)] = _gridTransf.gameObject;
+            TileMapData[new Vector2(_index1, _index2)] = _gridTransf.gameObject;
         }
     }
-    
+
     #region 动画切换
     public void FilpAllTile(Vector2 _startPos)
     {
@@ -69,29 +74,9 @@ public class TileMapGameObjectController : MonoBehaviour
     //4-- -6
     IEnumerator FilpAllTileIEnum(Vector2 _startPos)
     {
-        // Dictionary<int, List<Animator>> animDic = new Dictionary<int, List<Animator>>();
-        // foreach (Transform _gridTransf in gridParentTransf)
-        // {
-        //     int _index = int.Parse(_gridTransf.name.Split("_")[1]);
-        //     if (!animDic.ContainsKey(_index))
-        //     {
-        //         animDic[_index] = new List<Animator>();
-        //     }
-        //     animDic[_index].Add(_gridTransf.GetComponent<Animator>());
-        // }
-        ///从上到下
-        // for (int i = 4;i>=-6;i--)
-        // {
-        //     List<Animator> _animList = animDic[i];
-        //     foreach (var _anim in _animList)
-        //     {
-        //         _anim.Play("Grid_Filp1");
-        //     }
-        //     yield return new WaitForSeconds(flipTimeSplit);
-        // }
         List<Vector2> _stack = new List<Vector2>();
         _stack.Add(_startPos);
-        while (_stack!=null)
+        while (_stack != null)
         {
             List<Vector2> _tempStack = new List<Vector2>();
             foreach (var _vector2 in _stack)
@@ -99,16 +84,14 @@ public class TileMapGameObjectController : MonoBehaviour
                 if (TileMapData.ContainsKey(_vector2))
                 {
                     TileMapData[_vector2].GetComponent<Animator>().Play("Grid_Filp1");
-                    
                 }
             }
-            
-            
+
             yield return new WaitForSeconds(flipTimeSplit);
         }
     }
     #endregion
-    
+
     #region 地块生成
     [Button("重新生成地面物体")]
     public void ReGenerateGridGO()
@@ -117,7 +100,7 @@ public class TileMapGameObjectController : MonoBehaviour
         GenerateOffsetsAndNoise();
         GenerateGameObjectsFromTiles();
     }
-    
+
     void GenerateOffsetsAndNoise()
     {
         // 初始化随机偏移
@@ -162,6 +145,7 @@ public class TileMapGameObjectController : MonoBehaviour
                     tileGO.name = "Tile_" + localPlace.x + "_" + localPlace.y;
 
                     generatedObjects.Add(tileGO); // 将生成的GameObject添加到列表中
+
                     if (Random.value < smallObjectProbability)
                     {
                         int smallObjectIndex = Random.Range(0, smallObjectsPrefabs.Length);
@@ -175,13 +159,39 @@ public class TileMapGameObjectController : MonoBehaviour
         }
     }
 
+    void PlaceDirectionMarker()
+    {
+        // 获取鼠标点击的位置
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int cellPos = tilemap.WorldToCell(mouseWorldPos);
+
+        // 获取Tile所在的GameObject
+        foreach (GameObject tileGO in generatedObjects)
+        {
+            if (tilemap.WorldToCell(tileGO.transform.position) == cellPos)
+            {
+                // 在Tile位置放置方向标
+                GameObject marker = Instantiate(directionMarkerPrefab, tileGO.transform.position, Quaternion.identity, tileGO.transform);
+
+                // 设置方向（这里可以通过某种方式设置方向，例如通过UI或预定义逻辑）
+                GridSingle gridSingle = tileGO.GetComponent<GridSingle>();
+                if (gridSingle != null)
+                {
+                    gridSingle.SetDirection(Directions.RightDown); // 示例方向
+                }
+
+                break;
+            }
+        }
+    }
+
     void ClearGeneratedObjects()
     {
-        for (int i = gridParentTransf.childCount-1; i >= 0; i--)
+        for (int i = gridParentTransf.childCount - 1; i >= 0; i--)
         {
-            DestroyImmediate(gridParentTransf.GetChild(i).gameObject); 
+            DestroyImmediate(gridParentTransf.GetChild(i).gameObject);
         }
-        
+
         generatedObjects.Clear(); // 清空列表
     }
     #endregion

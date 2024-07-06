@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum Directions
 {
-    Up, RightUp, RightDown, Down, LeftDown, LeftUp
+    None,Up, RightUp, RightDown, Down, LeftDown, LeftUp
 }
