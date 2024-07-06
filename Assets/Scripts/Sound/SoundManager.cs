@@ -34,7 +34,7 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    [SerializeField] private AudioSource _musicSource, _effectsSource,extra_effectsSource;
+    [SerializeField] private AudioSource _musicSource, _effectsSource;
 
     private void Awake()
     {
@@ -82,7 +82,6 @@ public class SoundManager : MonoBehaviour
     public void ChangeVolumeEffects(float value)
     {
         _effectsSource.volume = value;
-        extra_effectsSource.volume = value;
         effectsVol = value;
     }
 
@@ -107,14 +106,5 @@ public class SoundManager : MonoBehaviour
     public float returnTime()
     {
         return _musicSource.time;
-    }
-        public void ExtraEffectPlayClip(AudioClip clip)
-    {
-        extra_effectsSource.Stop();
-        extra_effectsSource.PlayOneShot(clip);
-    }
-    public void ExtraEffectPlayStr(string str)
-    {
-        if (soundClip.ContainsKey(str)) ExtraEffectPlayClip(soundClip[str]);
     }
 }
