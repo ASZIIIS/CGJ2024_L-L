@@ -123,7 +123,6 @@ public class TileMapGameObjectController : MonoBehaviour
         List<Vector2Int> _stack = new List<Vector2Int> { _startPos };
         while (_stack.Count > 0)
         {
-            Debug.LogWarning($"Flip Stack Count:{_stack.Count}");
             List<Vector2Int> _tempStack = new List<Vector2Int>();
             foreach (var _vector2 in _stack)
             {
@@ -166,12 +165,8 @@ public class TileMapGameObjectController : MonoBehaviour
     }
 
     [Button("读取地图数据")]
-    public void ReGenerateGridGO()
+    public void LoadGridData()
     {
-        //ClearGeneratedObjects();
-        //GenerateOffsetsAndNoise();
-        //GenerateGameObjectsFromTiles();
-
         Transform level1Transf = GameObject.Find("Level1").transform;
         Transform level2Transf = GameObject.Find("Level2").transform;
         Transform level3Transf = GameObject.Find("Level3").transform;
@@ -182,6 +177,48 @@ public class TileMapGameObjectController : MonoBehaviour
             _transf.Find("Sprite").GetComponent<SpriteRenderer>().sprite = level1Transf.Find(_name).GetComponent<SpriteRenderer>().sprite;
             _transf.GetComponentInChildren<GridAnimEvent>().level1TargetSprite = level2Transf.Find(_name).GetComponent<SpriteRenderer>().sprite;
             _transf.GetComponentInChildren<GridAnimEvent>().level2TargetSprite = level3Transf.Find(_name).GetComponent<SpriteRenderer>().sprite;
+
+
+            for(int i = _transf.childCount-1;i>=0;i--)
+            {
+                Transform _tranfChild = _transf.GetChild(i);
+                if (_tranfChild.name.StartsWith("Small"))
+                {
+                    DestroyImmediate(_tranfChild.gameObject);
+                }
+            }
+            // var _smallGo = _transf.Find(smallObjectName);
+            // if (_smallGo != null)
+            // {
+            //     DestroyImmediate(_smallGo.gameObject);
+            // }
+
+            GameObject[] _smallGoPrefabs = null;
+            if(CurLevel == 1)
+            {
+                _smallGoPrefabs = smallObjectsPrefabsLevel1;
+            }
+            else if(CurLevel == 2)
+            {
+                _smallGoPrefabs = smallObjectLevel2;
+            }
+            else if(CurLevel == 3)
+            {
+                _smallGoPrefabs = smallObjectLevel3;
+            }
+            
+            //处理小物体
+            if (Random.value < smallObjectProbability)
+            {
+                int smallObjectIndex = Random.Range(0, _smallGoPrefabs.Length);
+                GameObject smallObjectPrefab = _smallGoPrefabs[smallObjectIndex];
+
+                Vector3 ObjectLocalPosition = new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
+                GameObject smallObject = Instantiate(smallObjectPrefab, Vector3.zero,Quaternion.identity, _transf);
+                smallObject.transform.localPosition = ObjectLocalPosition;
+                //smallObject.name = "SmallObject_" + localPlace.x + "_" + localPlace.y;
+                smallObject.name = smallObjectName;
+            }
         }
     }
 
@@ -229,60 +266,32 @@ public class TileMapGameObjectController : MonoBehaviour
                     tileGO.name = "Tile_" + localPlace.x + "_" + localPlace.y;
 
                     generatedObjects.Add(tileGO); // 将生成的GameObject添加到列表中
-
-                    GameObject[] _smallGoPrefabs = null;
-                    if(CurLevel == 1)
-                    {
-                        _smallGoPrefabs = smallObjectsPrefabsLevel1;
-                    }
-                    else if(CurLevel == 2)
-                    {
-                        _smallGoPrefabs = smallObjectLevel2;
-                    }
-                    else if(CurLevel == 3)
-                    {
-                        _smallGoPrefabs = smallObjectLevel3;
-                    }
-
-
-
-
-                    int smallObjectIndex = Random.Range(0, _smallGoPrefabs.Length);
-                    GameObject smallObjectPrefab = _smallGoPrefabs[smallObjectIndex];
-
-                    Vector3 ObjectLocalPosition = new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
-                    GameObject smallObject = Instantiate(smallObjectPrefab, ObjectLocalPosition, Quaternion.identity, tileGO.transform);
-                    //smallObject.name = "SmallObject_" + localPlace.x + "_" + localPlace.y;
-                    smallObject.name = smallObjectName;
                 }
             }
         }
     }
+    
     string smallObjectName = "SmallObject";
-    void ReGenerateSmallGameObject()
+    public void ReGenerateSmallGameObject(Transform _transf)
     {
         //清除旧的小物体
-        foreach(Transform _transf in gridParentTransf)
+        var _smallGo = _transf.Find(smallObjectName);
+        if(_smallGo != null)
         {
-            var _smallGo = _transf.Find(smallObjectName);
-            if(_smallGo != null)
-            {
-                Destroy(_smallGo);
-            }
-
-            //生成新的小物体
-            if (Random.value < smallObjectProbability)
-            {
-                int smallObjectIndex = Random.Range(0, smallObjectsPrefabsLevel1.Length);
-                GameObject smallObjectPrefab = smallObjectsPrefabsLevel1[smallObjectIndex];
-                Vector3 smallObjectLocalPosition = new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
-                GameObject smallObject = Instantiate(smallObjectPrefab,Vector3.zero , Quaternion.identity, _transf);
-                smallObject.transform.localPosition = smallObjectLocalPosition;
-
-                //smallObject.name = "SmallObject_" + localPlace.x + "_" + localPlace.y;
-            }
+            Destroy(_smallGo.gameObject);
         }
 
+        //生成新的小物体
+        if (Random.value < smallObjectProbability)
+        {
+            int smallObjectIndex = Random.Range(0, smallObjectsPrefabsLevel1.Length);
+            GameObject smallObjectPrefab = smallObjectsPrefabsLevel1[smallObjectIndex];
+            Vector3 smallObjectLocalPosition = new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
+            GameObject smallObject = Instantiate(smallObjectPrefab,Vector3.zero , Quaternion.identity, _transf);
+            smallObject.transform.localPosition = smallObjectLocalPosition;
+
+            //smallObject.name = "SmallObject_" + localPlace.x + "_" + localPlace.y;
+        }
     }
 
     void ClearGeneratedObjects()
