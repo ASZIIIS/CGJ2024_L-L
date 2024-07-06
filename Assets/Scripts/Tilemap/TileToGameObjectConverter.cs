@@ -13,7 +13,7 @@ public class TileToGameObjectConverter : MonoBehaviour
     [Button("´¢´ælevelµØ¿é")]
     public void ReGenerateGridGO()
     {
-        ClearGeneratedObjects();
+        
         ConvertTilesToGameObjects();
     }
     void Start()
