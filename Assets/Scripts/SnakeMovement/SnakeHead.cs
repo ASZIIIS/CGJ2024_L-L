@@ -8,19 +8,24 @@ public class SnakeHead : MonoBehaviour
     
     private GridManager manager;
     private Grid grid;
+    private TileToGameObjectConverter converter;
     private int direction;
     private Vector3Int currentGrid, targetGrid;
     private bool moveStage=true;
     private SnakeBody nextBody=null, tail=null;
     private bool systemPause=false, pause=true;
     public int forwardTimer, forwardPeriod, waveTimer, wavePeriod;
+    public GameObject bodyPrefeb;
+    private HeadAnimation animator;
     // Start is called before the first frame update
     void Start()
     {
         manager=new GridManager(6);
-        grid=GameObject.Find("Grid").GetComponent<Grid>();
+        grid=GameObject.Find("GridGameObjectController").GetComponent<Grid>();
+        animator=GetComponent<HeadAnimation>();
         direction=(int)Directions.Down;
         targetGrid=new Vector3Int(0,0,-9);
+        randomCatAnimation();
     }
     // Update is called once per frame
     void Update(){
@@ -51,6 +56,7 @@ public class SnakeHead : MonoBehaviour
                 //first half (center to edge)
                 currentPosition=grid.CellToWorld(currentGrid)+GridManager.halfUnitVector[direction]*forwardTimer/forwardPeriod;
                 transform.position=currentPosition;
+                
             }else{
                 //second half (edge to center)
                 currentPosition=grid.CellToWorld(targetGrid)-GridManager.halfUnitVector[direction]*(forwardPeriod-forwardTimer)/forwardPeriod;
@@ -80,4 +86,10 @@ public class SnakeHead : MonoBehaviour
         forwardTimer=0;
         waveTimer=0;
     }
+    private void randomCatAnimation(){
+        int index=Random.Range(0,6);
+        animator.ChangeAnimation(index);
+        animator.setAnimation(true);
+    }
+
 }

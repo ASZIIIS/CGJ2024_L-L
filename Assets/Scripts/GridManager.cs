@@ -10,7 +10,7 @@ public class GridManager
     public static void initHalfUnitVector(){
         halfUnitVector=new Vector3[6];
         waveUnitVector=new Vector3[6];
-        Grid grid=GameObject.Find("Grid").GetComponent<Grid>();
+        Grid grid=GameObject.Find("GridGameObjectController").GetComponent<Grid>();
         Vector3 centerToWorld=grid.CellToWorld(new Vector3Int(0,0,-10));
         Vector3 nextToWorld;
         nextToWorld=grid.CellToWorld(new Vector3Int(1,0,-10));//Up

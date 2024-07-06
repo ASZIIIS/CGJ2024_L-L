@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7408316459354456465}
   - component: {fileID: 2713384872345161497}
   - component: {fileID: 6079196771941759570}
+  - component: {fileID: 5361545865602892306}
+  - component: {fileID: 3007958439109916512}
   m_Layer: 0
   m_Name: Gatito
   m_TagString: Untagged
@@ -74,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: e9ddfe06183a1134099871cc386f2a95, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 831add0e085dbb847ba8d20e7c4e9f69, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,7 +95,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6353530300967096957}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 191f426688acdea49bc9e3fd0a1bb8ec, type: 2}
   m_CullingMode: 0
@@ -106,3 +108,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5361545865602892306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6353530300967096957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0bc3675aefd09c45856eff5e0e83ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextBody: {fileID: 0}
+--- !u!114 &3007958439109916512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6353530300967096957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c3f8b2bd5d41ed43b6ab04f3aed8ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 831add0e085dbb847ba8d20e7c4e9f69, type: 3}
+  - {fileID: 21300000, guid: e251185a443d0d74eb5501e87bd30ce0, type: 3}
+  - {fileID: 21300000, guid: 55908d8dfbfd683418ded4b654fc8c3d, type: 3}
+  - {fileID: 21300000, guid: 0aee93d53f4ee5f4292c9202c3dca1f4, type: 3}
+  - {fileID: 21300000, guid: 16bfd07615e9b7f448a75c13b2a18f53, type: 3}
+  - {fileID: 21300000, guid: dce21d8fbf3f25844ae1c6e83ecf645b, type: 3}
