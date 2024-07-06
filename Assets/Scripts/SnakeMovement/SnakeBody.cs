@@ -61,12 +61,7 @@ public class SnakeBody : MonoBehaviour
         }
         currentPosition+=GridManager.waveUnitVector[direction]
             *Mathf.Sin((float)(wavePhase*depth+head.waveTimer)*Mathf.PI)*waveAmplitude;
-        if(nextBody is null){
-            if(!pause){
-                head.forwardGoTime();
-            }
-            head.waveGoTime();
-        }else{
+        if(nextBody is not null){
             nextBody.move(moveStage, pause);
         }
     }
