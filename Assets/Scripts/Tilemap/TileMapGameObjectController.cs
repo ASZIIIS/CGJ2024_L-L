@@ -42,7 +42,7 @@ public class TileMapGameObjectController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.RightShift))
         {
             FilpAllTile(FilpStartPos);
         }
