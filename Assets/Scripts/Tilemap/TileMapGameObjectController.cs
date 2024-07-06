@@ -5,7 +5,6 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
-
 public class TileMapGameObjectController : MonoBehaviour
 {
     [Header("瓦片")]
@@ -23,7 +22,7 @@ public class TileMapGameObjectController : MonoBehaviour
     public float smallObjectProbability = 0.2f; // 小物体生成的概率
 
 
-    public Vector2 FilpStartPos;
+    public Vector2Int FilpStartPos;
     [FoldoutGroup("随机噪声")]
     public float noiseScale1 = 0.1f; // 噪声1的缩放
     [FoldoutGroup("随机噪声")]
@@ -49,6 +48,7 @@ public class TileMapGameObjectController : MonoBehaviour
         }
     }
 
+    #region Tile数据
     void InstorageTileMapData()
     {
         foreach (Transform _gridTransf in gridParentTransf)
@@ -59,50 +59,79 @@ public class TileMapGameObjectController : MonoBehaviour
             TileMapData[new Vector2(_index1,_index2)] = _gridTransf.gameObject;
         }
     }
+    /// <summary>
+    /// 根据二维坐标获取对应物体
+    /// </summary>
+    /// <param name="_pos"></param>
+    /// <returns></returns>
+    public GameObject GetTileObject(Vector2Int _pos)
+    {
+        if (TileMapData.ContainsKey(_pos))
+        {
+            return TileMapData[_pos];
+        }
+
+        return null;
+    }
+    #endregion
+    
     
     #region 动画切换
-    public void FilpAllTile(Vector2 _startPos)
+    public void FilpAllTile(Vector2Int _startPos)
     {
         StartCoroutine(FilpAllTileIEnum(_startPos));
     }
     public float flipTimeSplit = 0.5f;
     //4-- -6
-    IEnumerator FilpAllTileIEnum(Vector2 _startPos)
+    IEnumerator FilpFromUpToBottom()
     {
-        // Dictionary<int, List<Animator>> animDic = new Dictionary<int, List<Animator>>();
-        // foreach (Transform _gridTransf in gridParentTransf)
-        // {
-        //     int _index = int.Parse(_gridTransf.name.Split("_")[1]);
-        //     if (!animDic.ContainsKey(_index))
-        //     {
-        //         animDic[_index] = new List<Animator>();
-        //     }
-        //     animDic[_index].Add(_gridTransf.GetComponent<Animator>());
-        // }
-        ///从上到下
-        // for (int i = 4;i>=-6;i--)
-        // {
-        //     List<Animator> _animList = animDic[i];
-        //     foreach (var _anim in _animList)
-        //     {
-        //         _anim.Play("Grid_Filp1");
-        //     }
-        //     yield return new WaitForSeconds(flipTimeSplit);
-        // }
-        List<Vector2> _stack = new List<Vector2>();
+         Dictionary<int, List<Animator>> animDic = new Dictionary<int, List<Animator>>();
+         foreach (Transform _gridTransf in gridParentTransf)
+         {
+             int _index = int.Parse(_gridTransf.name.Split("_")[1]);
+             if (!animDic.ContainsKey(_index))
+             {
+                 animDic[_index] = new List<Animator>();
+             }
+             animDic[_index].Add(_gridTransf.GetComponent<Animator>());
+         }
+         for (int i = 4;i>=-6;i--)
+         {
+             List<Animator> _animList = animDic[i];
+             foreach (var _anim in _animList)
+             {
+                 _anim.Play("Grid_Filp1");
+             }
+             yield return new WaitForSeconds(flipTimeSplit);
+         }
+    }
+    IEnumerator FilpAllTileIEnum(Vector2Int _startPos)
+    {
+        
+        List<Vector2Int> flipedSprite = new List<Vector2Int>();
+        
+        //一轮
+        List<Vector2Int> _stack = new List<Vector2Int>();
         _stack.Add(_startPos);
         while (_stack!=null)
         {
-            List<Vector2> _tempStack = new List<Vector2>();
+            List<Vector2Int> _tempStack = new List<Vector2Int>();
             foreach (var _vector2 in _stack)
             {
-                if (TileMapData.ContainsKey(_vector2))
+                flipedSprite.Add(_vector2);
+                //有该数据并且还未反转过
+                TileMapData[_vector2].GetComponent<Animator>().Play("Grid_Filp1");
+
+                var _aroundGrids = GridManager.getAroundGrids(_vector2);
+                foreach (var _aroundGrid in _aroundGrids)
                 {
-                    TileMapData[_vector2].GetComponent<Animator>().Play("Grid_Filp1");
-                    
+                    if (TileMapData.ContainsKey(_aroundGrid) && !flipedSprite.Contains(_aroundGrid))
+                    {
+                        _tempStack.Add(_aroundGrid);
+                    }
                 }
             }
-            
+            _stack = _tempStack;
             
             yield return new WaitForSeconds(flipTimeSplit);
         }
@@ -185,5 +214,5 @@ public class TileMapGameObjectController : MonoBehaviour
         generatedObjects.Clear(); // 清空列表
     }
     #endregion
-
+    
 }

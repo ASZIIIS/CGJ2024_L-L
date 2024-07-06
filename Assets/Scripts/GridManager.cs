@@ -118,8 +118,8 @@ public class GridManager
             return new Vector3Int(targetX, targetY, -9);
         }
     }
-    public static Vector3Int[] getAroundGrids(Vector3Int gridPosition){
-        Vector3Int[] gridList=new Vector3Int[6];
+    public static Vector2Int[] getAroundGrids(Vector2Int gridPosition){
+        Vector2Int[] gridList=new Vector2Int[6];
         for(int i=0;i<6;++i){
             gridList[i]=gridPosition;
         }
