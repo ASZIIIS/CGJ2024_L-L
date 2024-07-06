@@ -8,11 +8,12 @@ public class SnakeHead : MonoBehaviour
     
     private GridManager manager;
     private Grid grid;
-    private TileToGameObjectConverter converter;
+    private TileMapGameObjectController tileController;
     private int direction;
     private Vector3Int currentGrid, targetGrid;
     private bool moveStage=true;
-    private SnakeBody nextBody=null, tail=null;
+    private bool isGrowing;
+    private SnakeBody nextBody=null;
     private bool systemPause=false, pause=true;
     public int forwardTimer, forwardPeriod, waveTimer, wavePeriod;
     public GameObject bodyPrefeb;
@@ -22,6 +23,7 @@ public class SnakeHead : MonoBehaviour
     {
         manager=new GridManager(6);
         grid=GameObject.Find("GridGameObjectController").GetComponent<Grid>();
+        tileController=GameObject.Find("GridGameObjectController").GetComponent<TileMapGameObjectController>();
         animator=GetComponent<HeadAnimation>();
         direction=(int)Directions.Down;
         targetGrid=new Vector3Int(0,0,-9);
@@ -42,10 +44,10 @@ public class SnakeHead : MonoBehaviour
             if(forwardTimer==0){
                 if(moveStage){
                     //reach the center of a grid
-                    //TODO: check grow
                     if(nextBody is not null){
-                        nextBody.changeTarget(currentGrid, direction);
+                        nextBody.changeTarget(currentGrid, direction, isGrowing);
                     }
+                    //TODO: check grow
                     currentGrid=targetGrid;
                     //TODO: change direction
                     targetGrid=manager.move(currentGrid, direction);
@@ -56,7 +58,9 @@ public class SnakeHead : MonoBehaviour
                 //first half (center to edge)
                 currentPosition=grid.CellToWorld(currentGrid)+GridManager.halfUnitVector[direction]*forwardTimer/forwardPeriod;
                 transform.position=currentPosition;
-                
+                if(isGrowing){
+                    transform.localScale=Vector3.one*(1f+Mathf.Sin(Mathf.PI*forwardTimer/forwardPeriod));
+                }
             }else{
                 //second half (edge to center)
                 currentPosition=grid.CellToWorld(targetGrid)-GridManager.halfUnitVector[direction]*(forwardPeriod-forwardTimer)/forwardPeriod;
@@ -81,8 +85,8 @@ public class SnakeHead : MonoBehaviour
         waveTimer=(waveTimer+1)%wavePeriod;
     }
     public void initTime(int forwardPeriod, int wavePeriod){
-        forwardPeriod=forwardPeriod;
-        wavePeriod=wavePeriod;
+        this.forwardPeriod=forwardPeriod;
+        this.wavePeriod=wavePeriod;
         forwardTimer=0;
         waveTimer=0;
     }
