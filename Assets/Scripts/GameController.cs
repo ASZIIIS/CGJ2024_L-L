@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         manager=new GridManager(mapSize);
+        GridManager.initHalfUnitVector();
     }
 
     // Update is called once per frame
