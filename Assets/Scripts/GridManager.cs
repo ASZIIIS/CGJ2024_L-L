@@ -5,10 +5,11 @@ using UnityEngine.Tilemaps;
 
 public class GridManager
 {
-    public int size;
-    private static Vector3[] halfUnitVector;
+    public static Vector3[] halfUnitVector;
+    public static Vector3[] waveUnitVector;
     public static void initHalfUnitVector(){
         halfUnitVector=new Vector3[6];
+        waveUnitVector=new Vector3[6];
         Grid grid=GameObject.Find("Grid").GetComponent<Grid>();
         Vector3 centerToWorld=grid.CellToWorld(new Vector3Int(0,0,-10));
         Vector3 nextToWorld;
@@ -24,7 +25,34 @@ public class GridManager
         halfUnitVector[4]=(nextToWorld-centerToWorld)/2;
         nextToWorld=grid.CellToWorld(new Vector3Int(0,-1,-10));//LeftUp
         halfUnitVector[5]=(nextToWorld-centerToWorld)/2;
+        for(int i=0;i<6;++i){
+            waveUnitVector[i]=(halfUnitVector[(i+1)%6]+halfUnitVector[(i+2)%6])/4;
+        }
     }
+    public static Vector3Int[] getAroundGrids(Vector3Int gridPosition){
+        Vector3Int[] gridList=new Vector3Int[6];
+        for(int i=0;i<6;++i){
+            gridList[i]=gridPosition;
+        }
+        //Up
+        gridList[0].x+=1;
+        //RightUp
+        gridList[1].x+=Mathf.Abs(gridPosition.y)%2;
+        gridList[1].y+=1;
+        //RightDown
+        gridList[2].x-=Mathf.Abs(gridPosition.y+1)%2;
+        gridList[2].y+=1;
+        //Down
+        gridList[3].x-=1;
+        //LeftDown
+        gridList[4].x-=(Mathf.Abs(gridPosition.y+1)%2);
+        gridList[4].y-=1;
+        //LeftUp
+        gridList[5].x-=(Mathf.Abs(gridPosition.y)%2);
+        gridList[5].y-=1;
+        return gridList;
+    }
+    public int size;
     public GridManager(int size){
         this.size=size;
         GridManager.initHalfUnitVector();
@@ -118,8 +146,8 @@ public class GridManager
             return new Vector3Int(targetX, targetY, -9);
         }
     }
-    public static Vector3Int[] getAroundGrids(Vector3Int gridPosition){
-        Vector3Int[] gridList=new Vector3Int[6];
+    public static Vector2Int[] getAroundGrids(Vector2Int gridPosition){
+        Vector2Int[] gridList=new Vector2Int[6];
         for(int i=0;i<6;++i){
             gridList[i]=gridPosition;
         }
