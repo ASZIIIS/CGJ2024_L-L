@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class GridAnimEvent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Sprite TargetSprite;
 
-    // Update is called once per frame
-    void Update()
+    public void AnimEvent_FlipToSprite1()
     {
-        
+        GetComponentInChildren<SpriteRenderer>().sprite = TargetSprite;
     }
 }
