@@ -16,10 +16,12 @@ public class SnakeHead : MonoBehaviour
     private SnakeBody nextBody=null;
     private bool systemPause=false, pause=true;
     public Transform parent;
-    public int forwardTimer, forwardPeriod, waveTimer, wavePeriod;
+    public int forwardTimer, forwardPeriod, waveTimer, wavePeriod, acceleratedPeriod;
     public float normalScale;
     public GameObject bodyPrefeb;
     private HeadAnimation animator;
+    private Color shadowColor;
+    private bool toNextLevel=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,7 @@ public class SnakeHead : MonoBehaviour
         animator=GetComponent<HeadAnimation>();
         direction=(int)Directions.Down;
         targetGrid=new Vector3Int(0,0,-9);
+        shadowColor=new Color(180f/255f,180f/255f,180f/255f);
         randomCatAnimation();
     }
     // Update is called once per frame
@@ -60,7 +63,7 @@ public class SnakeHead : MonoBehaviour
                             nextBody.activeGrow();
                         }else{
                             nextBody=Instantiate(bodyPrefeb, grid.CellToWorld(currentGrid), Quaternion.identity).GetComponent<SnakeBody>();
-                            nextBody.Init(this, grid, currentGrid, direction, 0, /*waveAmplitude*/0.5f, /*wavePhase*/5f, /*normalScale*/normalScale);
+                            nextBody.Init(this, currentGrid, direction, 0, /*waveAmplitude*/0.5f, /*wavePhase*/5f, /*normalScale*/normalScale);
                             nextBody.GetComponent<BodyAnimation>().ChangeSprite((int)currentGridInfo.food.GetComponent<Food>().foodType);
                             nextBody.activeGrow();
                         }
@@ -69,6 +72,8 @@ public class SnakeHead : MonoBehaviour
                     }
                     if(currentGridInfo.direction>0){
                         if(((int)currentGridInfo.direction-this.direction+6)%6==3){
+                            pause=true;
+                            Debug.Log("Game Over (arrow)");
                             //TODO: end game
                         }else{
                             this.direction=(int)currentGridInfo.direction;
@@ -76,6 +81,18 @@ public class SnakeHead : MonoBehaviour
                         }
                     }
                     targetGrid=manager.move(currentGrid, direction);
+                    if(tileController.GetTileObject((Vector2Int)targetGrid).GetComponent<GridSingle>().catOn){
+                        pause=true;
+                        Debug.Log("Game Over (self)");
+                        //TODO: end game
+                    }
+                }else{
+                    setGridCatOn(targetGrid, true);
+                    if(nextBody!=null){
+                        nextBody.updateCatOn();
+                    }else{
+                        setGridCatOn(currentGrid, false);
+                    }
                 }
             }
             if(moveStage){
@@ -119,5 +136,15 @@ public class SnakeHead : MonoBehaviour
         animator.ChangeAnimation(index);
         animator.setAnimation(true);
     }
-
+    public Vector3 CellToWorld(Vector3Int cellPosition){
+        return grid.CellToWorld(cellPosition);
+    }
+    public void setGridCatOn(Vector3Int gridPosition, bool state){
+        tileController.GetTileObject((Vector2Int)gridPosition).GetComponent<GridSingle>().catOn=state;
+        if(state){
+            tileController.GetTileObject((Vector2Int)gridPosition).transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().color=shadowColor;
+        }else{
+            tileController.GetTileObject((Vector2Int)gridPosition).transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().color=Color.white;
+        }
+    }
 }
