@@ -12,14 +12,13 @@ public class GridSingle : MonoBehaviour
     //     grid3
     // }
     public Directions direction;
-    public bool isfood;
-    public FoodType foodType;
+    public GameObject food;
+    public bool catOn=false;
     public void Init(Sprite _sprite)
     {
         // gridType = _gridType;
         transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = _sprite;
-        isfood = false;
-        foodType = FoodType.none;
+        food = null;
     }
 
     public void SetTrail(Directions _direct)

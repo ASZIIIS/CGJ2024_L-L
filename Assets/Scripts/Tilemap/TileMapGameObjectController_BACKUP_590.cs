@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -288,8 +289,13 @@ public class TileMapGameObjectController : MonoBehaviour
             {
                 _smallGoPrefabs = smallObjectLevel3;
             }
+<<<<<<< HEAD
+            //Debug.Log($"{CurLevel}  {_smallGoPrefabs.Length}");
+            //´¦ÀíÐ¡ÎïÌå
+=======
             
             //ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½
+>>>>>>> origin/master
             if (Random.value < smallObjectProbability)
             {
                 int smallObjectIndex = Random.Range(0, _smallGoPrefabs.Length);
@@ -363,20 +369,52 @@ public class TileMapGameObjectController : MonoBehaviour
         {
             Destroy(_transfChild.GetChild(i).gameObject);
         }
+<<<<<<< HEAD
+
+
+        GameObject[] _smallGoPrefabs = null;
+        if (CurLevel == 1)
+        {
+            _smallGoPrefabs = smallObjectsPrefabsLevel1;
+        }
+        else if (CurLevel == 2)
+        {
+            _smallGoPrefabs = smallObjectLevel2;
+        }
+        else if (CurLevel == 3)
+        {
+            _smallGoPrefabs = smallObjectLevel3;
+        }
+        //Éú³ÉÐÂµÄÐ¡ÎïÌå
+=======
         
         
         //ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Ð¡ï¿½ï¿½ï¿½ï¿½
+>>>>>>> origin/master
         if (Random.value < smallObjectProbability)
         {
-            int smallObjectIndex = Random.Range(0, smallObjectsPrefabsLevel1.Length);
-            GameObject smallObjectPrefab = smallObjectsPrefabsLevel1[smallObjectIndex];
-            Vector3 smallObjectLocalPosition = new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
-            GameObject smallObject = Instantiate(smallObjectPrefab,Vector3.zero , Quaternion.identity, _transf);
-            smallObject.transform.localPosition = smallObjectLocalPosition;
-            smallObject.transform.SetParent(_transf.Find("Sprite"));
+            int smallObjectIndex = Random.Range(0, _smallGoPrefabs.Length);
+            GameObject smallObjectPrefab = _smallGoPrefabs[smallObjectIndex];
+
+            Vector3 ObjectLocalPosition = new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
+            GameObject smallObject = Instantiate(smallObjectPrefab, Vector3.zero, Quaternion.identity, _transf);
+            smallObject.transform.localPosition = ObjectLocalPosition;
+            smallObject.transform.SetParent(_transf.Find("Sprite")); 
             smallObject.transform.localRotation = Quaternion.identity;
-            //smallObject.name = "SmallObject_" + localPlace.x + "_" + localPlace.y;
+            smallObject.name = smallObjectName;
         }
+
+        //if (Random.value < smallObjectProbability)
+        //{
+        //    int smallObjectIndex = Random.Range(0, smallObjectsPrefabsLevel1.Length);
+        //    GameObject smallObjectPrefab = smallObjectsPrefabsLevel1[smallObjectIndex];
+        //    Vector3 smallObjectLocalPosition = new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
+        //    GameObject smallObject = Instantiate(smallObjectPrefab,Vector3.zero , Quaternion.identity, _transf);
+        //    smallObject.transform.localPosition = smallObjectLocalPosition;
+        //    smallObject.transform.SetParent(_transf.Find("Sprite"));
+        //    smallObject.transform.localRotation = Quaternion.identity;
+        //    //smallObject.name = "SmallObject_" + localPlace.x + "_" + localPlace.y;
+        //}
     }
 
     void ClearGeneratedObjects()
