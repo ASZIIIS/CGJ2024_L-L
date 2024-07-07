@@ -99,6 +99,7 @@ public class TileMapGameObjectController : MonoBehaviour
                 // 设置食物类型
                 Food foodComponent = foodObject.GetComponent<Food>();
                 foodComponent.foodType = (FoodType)foodIndex;
+                _gridTransf.GetComponent<GridSingle>().foodType= (FoodType)foodIndex;
 
                 // 添加到已占用格子集合中
                 occupiedTiles.Add(gridPos);
@@ -118,6 +119,7 @@ public class TileMapGameObjectController : MonoBehaviour
     public void RemoveFood(Transform _gridTransf,Vector2Int gridPos, GameObject foodObject)
     {
         _gridTransf.GetComponent<GridSingle>().isfood= false;
+        _gridTransf.GetComponent<GridSingle>().foodType = FoodType.none;
         if (occupiedTiles.Contains(gridPos))
         {
             occupiedTiles.Remove(gridPos);

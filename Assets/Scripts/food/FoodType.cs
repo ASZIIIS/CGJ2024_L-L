@@ -5,5 +5,6 @@ public enum FoodType
     Type3,
     Type4,
     Type5,
-    Type6
+    Type6,
+    none
 }
