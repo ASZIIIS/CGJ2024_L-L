@@ -14,11 +14,13 @@ public class VolumeSlider : MonoBehaviour
     {
         if (_slider != null && _toggleEffects || _enenvironment != false)
         {
+            _slider.value = SoundManager.Instance.ReturnVolumeEffect();
             SoundManager.Instance.ChangeVolumeEffects(_slider.value);
             _slider.onValueChanged.AddListener(val => SoundManager.Instance.ChangeVolumeEffects(val));
         }
         if (_slider != null && _toggleMusic != false)
         {
+            _slider.value = SoundManager.Instance.ReturnVolumeMusic();
             SoundManager.Instance.ChangeVolumeMusic(_slider.value);
             _slider.onValueChanged.AddListener(val => SoundManager.Instance.ChangeVolumeMusic(val));
         }

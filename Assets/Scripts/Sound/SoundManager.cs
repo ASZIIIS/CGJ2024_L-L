@@ -79,10 +79,19 @@ public class SoundManager : MonoBehaviour
         _musicSource.volume = value;
         musicVol = value;
     }
+    public float ReturnVolumeMusic()
+    {
+        return musicVol;
+    }
+    
     public void ChangeVolumeEffects(float value)
     {
         _effectsSource.volume = value;
         effectsVol = value;
+    }
+    public float ReturnVolumeEffect()
+    {
+        return effectsVol;
     }
 
     public void ToggleEffects()
