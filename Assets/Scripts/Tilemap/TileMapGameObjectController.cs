@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
@@ -95,7 +95,7 @@ public class TileMapGameObjectController : MonoBehaviour
                 foodObject.transform.localPosition = foodLocalPosition;
                 foodObject.transform.SetParent(_gridTransf.Find("Sprite"));
                 foodObjects.Add(foodObject);
-                _gridTransf.GetComponent<GridSingle>().food=foodObject;
+                _gridTransf.GetComponent<GridSingle>().food = foodObject;
 
 
                 // ����ʳ������
@@ -118,18 +118,18 @@ public class TileMapGameObjectController : MonoBehaviour
     /// <param name="gridPos"></param>
     public void RemoveFood(Vector2Int gridPos)
     {
-        GridSingle _grid=GetTileObject(gridPos).GetComponent<GridSingle>();
+        GridSingle _grid = GetTileObject(gridPos).GetComponent<GridSingle>();
         if (occupiedTiles.Contains(gridPos))
         {
             occupiedTiles.Remove(gridPos);
         }
-        GameObject foodObject=_grid.food;
+        GameObject foodObject = _grid.food;
         if (currentFoods.Contains(foodObject))
         {
             currentFoods.Remove(foodObject);
         }
         Destroy(foodObject);
-        _grid.food=null;
+        _grid.food = null;
         GenerateFood();
     }
 
@@ -169,7 +169,7 @@ public class TileMapGameObjectController : MonoBehaviour
         StartCoroutine(FilpAllTileIEnum(_startPos));
     }
     public float flipTimeSplit = 0.5f;
-    
+
     // ���ϵ��·�ת��ͼ  4-- -6
     //IEnumerator FilpFromUpToBottom()
     //{
@@ -224,8 +224,8 @@ public class TileMapGameObjectController : MonoBehaviour
                 }
             }
             _stack = _tempStack;
-          
-            
+
+
             yield return new WaitForSeconds(flipTimeSplit);
         }
 
@@ -265,7 +265,7 @@ public class TileMapGameObjectController : MonoBehaviour
             _transf.GetComponentInChildren<GridAnimEvent>().level2TargetSprite = level3Transf.Find(_name).GetComponent<SpriteRenderer>().sprite;
 
             Transform _transfChild = _transf.Find(spriteName);
-            for(int i = _transfChild.childCount-1;i>=0;i--)
+            for (int i = _transfChild.childCount - 1; i >= 0; i--)
             {
                 DestroyImmediate(_transfChild.GetChild(i).gameObject);
             }
@@ -276,19 +276,19 @@ public class TileMapGameObjectController : MonoBehaviour
             // }
 
             GameObject[] _smallGoPrefabs = null;
-            if(CurLevel == 1)
+            if (CurLevel == 1)
             {
                 _smallGoPrefabs = smallObjectsPrefabsLevel1;
             }
-            else if(CurLevel == 2)
+            else if (CurLevel == 2)
             {
                 _smallGoPrefabs = smallObjectLevel2;
             }
-            else if(CurLevel == 3)
+            else if (CurLevel == 3)
             {
                 _smallGoPrefabs = smallObjectLevel3;
             }
-            
+
             //����С����
             if (Random.value < smallObjectProbability)
             {
@@ -296,7 +296,7 @@ public class TileMapGameObjectController : MonoBehaviour
                 GameObject smallObjectPrefab = _smallGoPrefabs[smallObjectIndex];
 
                 Vector3 ObjectLocalPosition = new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
-                GameObject smallObject = Instantiate(smallObjectPrefab, Vector3.zero,Quaternion.identity, _transf);
+                GameObject smallObject = Instantiate(smallObjectPrefab, Vector3.zero, Quaternion.identity, _transf);
                 smallObject.transform.localPosition = ObjectLocalPosition;
                 smallObject.transform.SetParent(_transf.Find("Sprite"));
                 //smallObject.name = "SmallObject_" + localPlace.x + "_" + localPlace.y;
@@ -353,25 +353,46 @@ public class TileMapGameObjectController : MonoBehaviour
             }
         }
     }
-    
+
     string smallObjectName = "SmallObject";
     public void ReGenerateSmallGameObject(Transform _transf)
     {
         //����ɵ�С���������
         Transform _transfChild = _transf.Find(spriteName);
-        for(int i = _transfChild.childCount-1;i>=0;i--)
+        for (int i = _transfChild.childCount - 1; i >= 0; i--)
         {
             Destroy(_transfChild.GetChild(i).gameObject);
         }
-        
-        
+
+
         //�����µ�С����
         if (Random.value < smallObjectProbability)
         {
-            int smallObjectIndex = Random.Range(0, smallObjectsPrefabsLevel1.Length);
-            GameObject smallObjectPrefab = smallObjectsPrefabsLevel1[smallObjectIndex];
+            GameObject[] _smallGoPrefabs = null;
+            if (CurLevel == 1)
+            {
+                _smallGoPrefabs = smallObjectLevel2;
+            }
+            else if (CurLevel == 2)
+            {
+                _smallGoPrefabs = smallObjectLevel3;
+            }
+            else
+            {
+                //Debug.Log("");
+                return;
+            }
+            //else if (CurLevel == 3)
+            //{
+            //    _smallGoPrefabs = smallObjectLevel3;
+            //}
+
+
+
+            int smallObjectIndex = Random.Range(0, _smallGoPrefabs.Length);
+            GameObject smallObjectPrefab = _smallGoPrefabs[smallObjectIndex];
             Vector3 smallObjectLocalPosition = new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0);
-            GameObject smallObject = Instantiate(smallObjectPrefab,Vector3.zero , Quaternion.identity, _transf);
+            GameObject smallObject = Instantiate(smallObjectPrefab, Vector3.zero, Quaternion.identity, _transf);
             smallObject.transform.localPosition = smallObjectLocalPosition;
             smallObject.transform.SetParent(_transf.Find("Sprite"));
             smallObject.transform.localRotation = Quaternion.identity;

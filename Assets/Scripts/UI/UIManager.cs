@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
         for(int i = 0; i < 4; i++)
         {
             int _indexBuffer = i;
-            _btnGo = transform.GetChild(i);
+            _btnGo = transform.GetChild(i+2);
             _btnGo.GetComponentInChildren<Text>().text = CurLevelDirections[i].ToString();
             _btnGo.GetComponent<Image>().sprite = GridControllerTransf.GetComponent<TrailController>().DirectToSprite(CurLevelDirections[_indexBuffer]);
 
@@ -63,7 +63,7 @@ public class UIManager : MonoBehaviour
         GridControllerTransf.GetComponent<TrailController>().SetCurTrailDirect(CurLevelDirections[_index]);
         pickedNumbers[_index] = ChangePickedNumber();
         CurLevelDirections[_index] = (Directions)pickedNumbers[_index];
-        _btnGo = transform.GetChild(_index);
+        _btnGo = transform.GetChild(_index+2);
         _btnGo.GetComponentInChildren<Text>().text = CurLevelDirections[_index].ToString();
         _btnGo.GetComponent<Image>().sprite = GridControllerTransf.GetComponent<TrailController>().DirectToSprite(CurLevelDirections[_index]);
 
