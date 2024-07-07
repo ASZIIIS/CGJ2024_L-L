@@ -15,6 +15,8 @@ public class TileMapGameObjectController : MonoBehaviour
     public Sprite[] TileSprites; // 用于生成Tile的GameObject预制件数组
     public GameObject TilePrefab;
     public Dictionary<Vector2, GameObject> TileMapData = new Dictionary<Vector2, GameObject>();
+    public HashSet<Vector2Int> occupiedTiles = new HashSet<Vector2Int>();
+
 
     private List<GameObject> generatedObjects = new List<GameObject>(); // 存储生成的GameObject
 
@@ -42,11 +44,26 @@ public class TileMapGameObjectController : MonoBehaviour
 
     public static int CurLevel = 1;
     public static bool isLoadLevel = false;
+
+    [Header("食物")]
+    public GameObject[] foodPrefabs; // 用于生成食物的预制件数组
+    public List<GameObject> foodObjects = new List<GameObject>(); // 存储生成的食物对象
+    public float foodGenerationProbability = 0.1f; // 食物生成概率
+    private List<GameObject> currentFoods = new List<GameObject>(); // 当前生成的食物列表
+    public float foodGenerationInterval = 10.0f; // 食物生成间隔
     void Start()
     {
         InstorageTileMapData();
+        StartCoroutine(GenerateFoodPeriodically());
     }
-
+    IEnumerator GenerateFoodPeriodically()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(foodGenerationInterval);
+            GenerateFood();
+        }
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightShift))
@@ -54,6 +71,67 @@ public class TileMapGameObjectController : MonoBehaviour
             FilpAllTile(FilpStartPos);
         }
     }
+    void GenerateFood()
+    {
+        if (currentFoods.Count >= 2) return;
+
+        foreach (Transform _gridTransf in gridParentTransf)
+        {
+            Vector2Int gridPos = new Vector2Int(
+                Mathf.FloorToInt(_gridTransf.position.x),
+                Mathf.FloorToInt(_gridTransf.position.y)
+            );
+
+            if (occupiedTiles.Contains(gridPos)) continue;
+
+            if (Random.value < foodGenerationProbability)
+            {
+                _gridTransf.GetComponent<GridSingle>().isfood= true;
+                int foodIndex = Random.Range(0, foodPrefabs.Length);
+                GameObject foodPrefab = foodPrefabs[foodIndex];
+
+                Vector3 foodLocalPosition = new Vector3(Random.Range(-0.05f, 0.05f), Random.Range(-0.05f, 0.05f), 0);
+                GameObject foodObject = Instantiate(foodPrefab, Vector3.zero, Quaternion.identity, _gridTransf);
+                foodObject.transform.localPosition = foodLocalPosition;
+                foodObject.transform.SetParent(_gridTransf.Find("Sprite"));
+                foodObjects.Add(foodObject);
+
+                // 设置食物类型
+                Food foodComponent = foodObject.GetComponent<Food>();
+                foodComponent.foodType = (FoodType)foodIndex;
+                _gridTransf.GetComponent<GridSingle>().foodType= (FoodType)foodIndex;
+
+                // 添加到已占用格子集合中
+                occupiedTiles.Add(gridPos);
+
+                // 添加到当前生成的食物列表
+                currentFoods.Add(foodObject);
+
+
+                break; // 生成一个食物后退出循环
+            }
+        }
+    }
+    /// <summary>
+    /// 需要在蛇吃豆子的时候被调用
+    /// </summary>
+    /// <param name="gridPos"></param>
+    public void RemoveFood(Transform _gridTransf,Vector2Int gridPos, GameObject foodObject)
+    {
+        _gridTransf.GetComponent<GridSingle>().isfood= false;
+        _gridTransf.GetComponent<GridSingle>().foodType = FoodType.none;
+        if (occupiedTiles.Contains(gridPos))
+        {
+            occupiedTiles.Remove(gridPos);
+        }
+
+        if (currentFoods.Contains(foodObject))
+        {
+            currentFoods.Remove(foodObject);
+        }
+    }
+
+
 
     #region Tile数据
     void InstorageTileMapData()
@@ -162,6 +240,10 @@ public class TileMapGameObjectController : MonoBehaviour
         ClearGeneratedObjects();
         GenerateOffsetsAndNoise();
         GenerateGameObjectsFromTiles();
+
+        // 清空已占用格子集合
+        occupiedTiles.Clear();
+        GenerateFood();
     }
 
     private string spriteName = "Sprite";

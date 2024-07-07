@@ -37119,6 +37119,15 @@ MonoBehaviour:
   noiseScale2: 0.14262235
   noiseWeight1: 0.34447432
   noiseWeight2: 0.6555257
+  foodPrefabs:
+  - {fileID: 1608170566695736369, guid: 32568e001184f5749988386ada51efb1, type: 3}
+  - {fileID: 2507906796412819599, guid: 7ba841941f143704099a9197b9ef7b70, type: 3}
+  - {fileID: 2063693206209785580, guid: e6e6308f5a84c6d41b8cf394af99bcd4, type: 3}
+  - {fileID: 2527848408300224914, guid: 76d0526635ed59f4484a9a21ca2e59d4, type: 3}
+  - {fileID: 4413674439792463791, guid: 75d85f6c940fb774684e49d979caa7d4, type: 3}
+  - {fileID: 5806750587497671664, guid: f3291ad1b7938164f9193cbb006549f5, type: 3}
+  foodGenerationProbability: 0.1
+  foodGenerationFrequency: 5
   flipTimeSplit: 0.2
 --- !u!114 &1561227293
 MonoBehaviour:
