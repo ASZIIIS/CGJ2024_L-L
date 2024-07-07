@@ -34,7 +34,7 @@ public class TrailController : MonoBehaviour
         if(MouseGridGo !=null)
         {
             mouseGo.transform.position = MouseGridGo.transform.position;
-            if(Input.GetMouseButtonDown(0) && MouseGrid.directtion == Directions.None)
+            if(Input.GetMouseButtonDown(0) && MouseGrid.direction == Directions.None)
             {
                 SetTrail(MouseGrid, CurDirect);
             }
