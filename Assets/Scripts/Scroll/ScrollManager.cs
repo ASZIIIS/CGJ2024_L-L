@@ -14,13 +14,26 @@ public class ScrollManager : MonoBehaviour
     public float minAngularSpeed = -360f; // 最小角速度
     public float maxAngularSpeed = 360f; // 最大角速度
 
-    void Update()
+    
+    public int catcount = 60;
+    public float splitTime = 0.4f;
+
+
+    public IEnumerator CatBottom()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        Animator anim = GetComponent<Animator>();
+        anim.Play("bottle2");
+        
+     
+        for (int i = 0; i < catcount; i++)
         {
             int ballIndex = Random.Range(0, BallSprites.Count);
             SpawnBall(ballIndex);
+            yield return new WaitForSeconds(splitTime);
         }
+
+        yield return new WaitForSeconds(2f);
+        GetComponent<Animator>().Play("bottle");
     }
     
     void SpawnBall(int _index)

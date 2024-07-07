@@ -119,6 +119,7 @@ public class SnakeBody : MonoBehaviour
     public void activeGrow(){
         if(!awake){
             awake=true;
+            head.soundEffect("4");
         }else{
             growState=2;
         }

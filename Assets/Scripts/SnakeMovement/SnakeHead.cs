@@ -68,22 +68,26 @@ public class SnakeHead : MonoBehaviour
                             nextBody.activeGrow();
                         }
                         tileController.RemoveFood((Vector2Int)currentGrid);
+                        soundEffect("10");
                         //TODO: add 1 point
                     }
                     if(currentGridInfo.direction>0){
                         if(((int)currentGridInfo.direction-this.direction+6)%6==3){
                             pause=true;
                             Debug.Log("Game Over (arrow)");
+                            soundEffect("14");
                             //TODO: end game
                         }else{
                             this.direction=(int)currentGridInfo.direction;
                             transform.rotation=Quaternion.Euler(0f,0f,60f*(4-this.direction));
                         }
+                        soundEffect("11");
                     }
                     targetGrid=manager.move(currentGrid, direction);
                     if(tileController.GetTileObject((Vector2Int)targetGrid).GetComponent<GridSingle>().catOn){
                         pause=true;
                         Debug.Log("Game Over (self)");
+                        soundEffect("13");
                         //TODO: end game
                     }
                 }else{
@@ -146,5 +150,10 @@ public class SnakeHead : MonoBehaviour
         }else{
             tileController.GetTileObject((Vector2Int)gridPosition).transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().color=Color.white;
         }
+    }
+
+    public void soundEffect(string name)
+    {
+        SoundManager.Instance.EffectPlayStr(name);
     }
 }

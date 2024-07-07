@@ -154,9 +154,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1768084192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1.1999989}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 31, y: 1.1999989}
   m_SizeDelta: {x: 64, y: 21.600002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &16561590
@@ -224,11 +224,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1bec958d449a4ca498911d4efed9b9e0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -547,7 +547,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -609,7 +609,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f41fc4d9251cabb4fa93f8e435533d8a, type: 3}
+    m_Font: {fileID: 12800000, guid: a900afc5010f91e4ba2af4b758b2bfd6, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -734,7 +734,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1128,7 +1128,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 5
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2038747222}
@@ -1239,7 +1239,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f41fc4d9251cabb4fa93f8e435533d8a, type: 3}
+    m_Font: {fileID: 12800000, guid: a900afc5010f91e4ba2af4b758b2bfd6, type: 3}
     m_FontSize: 58
     m_FontStyle: 0
     m_BestFit: 0
@@ -1424,7 +1424,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 5
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2038747222}
@@ -1568,7 +1568,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 5
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 81862921}
@@ -1724,7 +1724,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1786,7 +1786,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f41fc4d9251cabb4fa93f8e435533d8a, type: 3}
+    m_Font: {fileID: 12800000, guid: a900afc5010f91e4ba2af4b758b2bfd6, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -1839,9 +1839,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1315190113}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1.2000008}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 31, y: 1.2000008}
   m_SizeDelta: {x: 64, y: 21.599998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1188740231
@@ -1981,7 +1981,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicVol: 0
   effectsVol: 0
-  _soundClipList: []
+  _soundClipList:
+  - _clipName: 1
+    _clipSource: {fileID: 8300000, guid: c2e8dae8da1d86b48bf6d1ab8b76460f, type: 3}
+  - _clipName: 2
+    _clipSource: {fileID: 8300000, guid: 6e12f194e40f50b44b6ed998d73ad1be, type: 3}
+  - _clipName: 3
+    _clipSource: {fileID: 8300000, guid: 228373397a1734b45940d76df3da6d7b, type: 3}
+  - _clipName: 4
+    _clipSource: {fileID: 8300000, guid: 0ae78946a8d961c4e9cf3dbcb58676c0, type: 3}
+  - _clipName: 5
+    _clipSource: {fileID: 8300000, guid: 4904f41967fb8a84d870bab62e693781, type: 3}
+  - _clipName: 6
+    _clipSource: {fileID: 8300000, guid: 4eb831bb82f239a4e90af8b0d98a1c6b, type: 3}
+  - _clipName: 7
+    _clipSource: {fileID: 8300000, guid: 7ba199549b51dcb42a4ea3d90d68366f, type: 3}
+  - _clipName: 8
+    _clipSource: {fileID: 8300000, guid: 1032d82854a918747947c132958142ba, type: 3}
+  - _clipName: 9
+    _clipSource: {fileID: 8300000, guid: 42329ee0d04cf7e4c8851530aba0c173, type: 3}
+  - _clipName: 10
+    _clipSource: {fileID: 8300000, guid: dbde58de132d2df46aa876b4031d6228, type: 3}
+  - _clipName: 11
+    _clipSource: {fileID: 8300000, guid: d6fcc7fa60a39234d83f5e700c5c16a6, type: 3}
+  - _clipName: 12
+    _clipSource: {fileID: 8300000, guid: ed5cf1605a829d348b7c33c5d9b7dd43, type: 3}
+  - _clipName: 13
+    _clipSource: {fileID: 8300000, guid: 0770735b1b629d7408068c4f1a173d69, type: 3}
+  - _clipName: 14
+    _clipSource: {fileID: 8300000, guid: cba78776ec0cf2b41b3d758bdc3ad6f5, type: 3}
+  - _clipName: 15
+    _clipSource: {fileID: 8300000, guid: 44207da48d7b96242b0a49dc7a930c4e, type: 3}
+  - _clipName: 16
+    _clipSource: {fileID: 8300000, guid: ed9c1174ce07ccc4984e207f0bcd0138, type: 3}
+  - _clipName: 17
+    _clipSource: {fileID: 8300000, guid: 337aa6bcb6a58f04ebbe8ece305ffe6f, type: 3}
+  - _clipName: 18
+    _clipSource: {fileID: 8300000, guid: 7979d761ff8c8ca48a36e40e4e27efbc, type: 3}
   _musicSource: {fileID: 70534567}
   _effectsSource: {fileID: 360793139}
 --- !u!4 &1217433629
@@ -2034,8 +2070,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -29, y: 0}
+  m_SizeDelta: {x: -78, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1333724533
 GameObject:
@@ -2145,7 +2181,7 @@ RectTransform:
   m_Father: {fileID: 2078119327}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2355,7 +2391,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 5
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 81862921}
@@ -2367,7 +2403,19 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: mainScene
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1217433628}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: MuscilPlayStr
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1717033303
@@ -2441,7 +2489,7 @@ RectTransform:
   m_Father: {fileID: 709575838}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2591,8 +2639,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -29.000004, y: 0}
+  m_SizeDelta: {x: -77.99999, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1869975677
 GameObject:
@@ -2804,7 +2852,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f41fc4d9251cabb4fa93f8e435533d8a, type: 3}
+    m_Font: {fileID: 12800000, guid: a900afc5010f91e4ba2af4b758b2bfd6, type: 3}
     m_FontSize: 58
     m_FontStyle: 0
     m_BestFit: 0
