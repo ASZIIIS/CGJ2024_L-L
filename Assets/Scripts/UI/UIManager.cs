@@ -10,10 +10,14 @@ public class UIManager : MonoBehaviour
 {
     #region
     Transform GridControllerTransf;
-    [LabelText("±¾¹ØµÄ¹ìµÀ£¬°´Ë³Ðò")]
+    [LabelText("ï¿½ï¿½ï¿½ØµÄ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½")]
     List<Directions> CurLevelDirections = new List<Directions>();
-
-
+    List<int> pickedNumbers = new List<int>();
+    Transform _btnGo;
+    int _number;
+    int[] availableNumbers = { 1, 2, 3, 4, 5, 6 };
+    int _index;
+    int randomNumber;
     private void Awake()
     {
         GridControllerTransf = GameObject.Find("GridGameObjectController").transform;
@@ -22,17 +26,16 @@ public class UIManager : MonoBehaviour
 
     void InitUIAction()
     {
-        //Ëæ»ú³éÈ¡ËÄ¸ö¹ìµÀ¸üÐÂUI
-        int[] availableNumbers = { 1, 2, 3, 4, 5, 6 };
-        List<int> pickedNumbers = new List<int>();
+        //ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½UI
+
         while (pickedNumbers.Count < 4)
         {
-            int _index = UnityEngine.Random.Range(0,availableNumbers.Length); // Éú³ÉÒ»¸öËæ»úË÷Òý
-            int _number = availableNumbers[_index]; // »ñÈ¡¸ÃË÷Òý´¦µÄÊýÖµ
+            _index = UnityEngine.Random.Range(0,availableNumbers.Length); // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            _number = availableNumbers[_index]; // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 
             if (!pickedNumbers.Contains(_number))
             {
-                pickedNumbers.Add(_number); // Èç¹ûÊýÖµ²»ÖØ¸´£¬ÔòÌí¼Óµ½½á¹ûÁÐ±íÖÐ
+                pickedNumbers.Add(_number); // ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½
             }
         }
         foreach(var _number in pickedNumbers)
@@ -43,7 +46,7 @@ public class UIManager : MonoBehaviour
         for(int i = 0; i < 4; i++)
         {
             int _indexBuffer = i;
-            Transform _btnGo = transform.GetChild(i);
+            _btnGo = transform.GetChild(i);
             _btnGo.GetComponentInChildren<Text>().text = CurLevelDirections[i].ToString();
             _btnGo.GetComponent<Image>().sprite = GridControllerTransf.GetComponent<TrailController>().DirectToSprite(CurLevelDirections[_indexBuffer]);
 
@@ -53,13 +56,26 @@ public class UIManager : MonoBehaviour
             });
         }
 
-        TrailButton(0);
     }
 
     void TrailButton(int _index)
     {
         GridControllerTransf.GetComponent<TrailController>().SetCurTrailDirect(CurLevelDirections[_index]);
-    }
+        pickedNumbers[_index] = ChangePickedNumber();
+        CurLevelDirections[_index] = (Directions)pickedNumbers[_index];
+        _btnGo = transform.GetChild(_index);
+        _btnGo.GetComponentInChildren<Text>().text = CurLevelDirections[_index].ToString();
+        _btnGo.GetComponent<Image>().sprite = GridControllerTransf.GetComponent<TrailController>().DirectToSprite(CurLevelDirections[_index]);
 
+    }
+    int ChangePickedNumber()
+    {
+        do{
+            randomNumber = availableNumbers[UnityEngine.Random.Range(0,availableNumbers.Length)];
+        }
+        while(pickedNumbers.Contains(randomNumber));
+        return randomNumber;
+
+    }
     #endregion
 }

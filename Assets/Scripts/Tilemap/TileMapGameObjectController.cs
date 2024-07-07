@@ -10,33 +10,33 @@ using Random = UnityEngine.Random;
 
 public class TileMapGameObjectController : MonoBehaviour
 {
-    [Header("ÍßÆ¬")]
-    public Tilemap tilemap; // ÐèÒªÊÖ¶¯½«Tilemap¶ÔÏóÍÏ×§µ½´Ë×Ö¶Î
-    public Sprite[] TileSprites; // ÓÃÓÚÉú³ÉTileµÄGameObjectÔ¤ÖÆ¼þÊý×é
+    [Header("ï¿½ï¿½Æ¬")]
+    public Tilemap tilemap; // ï¿½ï¿½Òªï¿½Ö¶ï¿½ï¿½ï¿½Tilemapï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×§ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
+    public Sprite[] TileSprites; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Tileï¿½ï¿½GameObjectÔ¤ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½
     public GameObject TilePrefab;
     public Dictionary<Vector2, GameObject> TileMapData = new Dictionary<Vector2, GameObject>();
     public HashSet<Vector2Int> occupiedTiles = new HashSet<Vector2Int>();
 
 
-    private List<GameObject> generatedObjects = new List<GameObject>(); // ´æ´¢Éú³ÉµÄGameObject
+    private List<GameObject> generatedObjects = new List<GameObject>(); // ï¿½æ´¢ï¿½ï¿½ï¿½Éµï¿½GameObject
 
     public Transform gridParentTransf; //
-    [Header("Ð¡ÎïÌå")]
+    [Header("Ð¡ï¿½ï¿½ï¿½ï¿½")]
     public GameObject[] smallObjectsPrefabsLevel1;
     public GameObject[] smallObjectLevel2;
-    public GameObject[] smallObjectLevel3; // ÓÃÓÚÉú³ÉÐ¡ÎïÌåµÄÔ¤ÖÆ¼þÊý×é
+    public GameObject[] smallObjectLevel3; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    public float smallObjectProbability = 0.2f; // Ð¡ÎïÌåÉú³ÉµÄ¸ÅÂÊ
+    public float smallObjectProbability = 0.2f; // Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉµÄ¸ï¿½ï¿½ï¿½
 
     public Vector2Int FilpStartPos;
-    [FoldoutGroup("Ëæ»úÔëÉù")]
-    public float noiseScale1 = 0.1f; // ÔëÉù1µÄËõ·Å
-    [FoldoutGroup("Ëæ»úÔëÉù")]
-    public float noiseScale2 = 0.05f; // ÔëÉù2µÄËõ·Å
-    [FoldoutGroup("Ëæ»úÔëÉù")]
-    public float noiseWeight1 = 0.5f; // ÔëÉù1µÄÈ¨ÖØ
-    [FoldoutGroup("Ëæ»úÔëÉù")]
-    public float noiseWeight2 = 0.5f; // ÔëÉù2µÄÈ¨ÖØ
+    [FoldoutGroup("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public float noiseScale1 = 0.1f; // ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [FoldoutGroup("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public float noiseScale2 = 0.05f; // ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [FoldoutGroup("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public float noiseWeight1 = 0.5f; // ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½È¨ï¿½ï¿½
+    [FoldoutGroup("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public float noiseWeight2 = 0.5f; // ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½È¨ï¿½ï¿½
 
     private Vector2 randomOffset1;
     private Vector2 randomOffset2;
@@ -45,15 +45,16 @@ public class TileMapGameObjectController : MonoBehaviour
     public static int CurLevel = 1;
     public static bool isLoadLevel = false;
 
-    [Header("Ê³Îï")]
-    public GameObject[] foodPrefabs; // ÓÃÓÚÉú³ÉÊ³ÎïµÄÔ¤ÖÆ¼þÊý×é
-    public List<GameObject> foodObjects = new List<GameObject>(); // ´æ´¢Éú³ÉµÄÊ³Îï¶ÔÏó
-    public float foodGenerationProbability = 0.1f; // Ê³ÎïÉú³É¸ÅÂÊ
-    private List<GameObject> currentFoods = new List<GameObject>(); // µ±Ç°Éú³ÉµÄÊ³ÎïÁÐ±í
-    public float foodGenerationInterval = 10.0f; // Ê³ÎïÉú³É¼ä¸ô
+    [Header("Ê³ï¿½ï¿½")]
+    public GameObject[] foodPrefabs; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê³ï¿½ï¿½ï¿½Ô¤ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½
+    public List<GameObject> foodObjects = new List<GameObject>(); // ï¿½æ´¢ï¿½ï¿½ï¿½Éµï¿½Ê³ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float foodGenerationProbability = 0.1f; // Ê³ï¿½ï¿½ï¿½ï¿½ï¿½É¸ï¿½ï¿½ï¿½
+    private List<GameObject> currentFoods = new List<GameObject>(); // ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Éµï¿½Ê³ï¿½ï¿½ï¿½Ð±ï¿½
+    public float foodGenerationInterval = 10.0f; // Ê³ï¿½ï¿½ï¿½ï¿½ï¿½É¼ï¿½ï¿½
     void Start()
     {
         InstorageTileMapData();
+        GenerateFood();
         StartCoroutine(GenerateFoodPeriodically());
     }
     IEnumerator GenerateFoodPeriodically()
@@ -86,7 +87,6 @@ public class TileMapGameObjectController : MonoBehaviour
 
             if (Random.value < foodGenerationProbability)
             {
-                _gridTransf.GetComponent<GridSingle>().isfood= true;
                 int foodIndex = Random.Range(0, foodPrefabs.Length);
                 GameObject foodPrefab = foodPrefabs[foodIndex];
 
@@ -95,45 +95,48 @@ public class TileMapGameObjectController : MonoBehaviour
                 foodObject.transform.localPosition = foodLocalPosition;
                 foodObject.transform.SetParent(_gridTransf.Find("Sprite"));
                 foodObjects.Add(foodObject);
+                _gridTransf.GetComponent<GridSingle>().food=foodObject;
 
-                // ÉèÖÃÊ³ÎïÀàÐÍ
+
+                // ï¿½ï¿½ï¿½ï¿½Ê³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 Food foodComponent = foodObject.GetComponent<Food>();
                 foodComponent.foodType = (FoodType)foodIndex;
-                _gridTransf.GetComponent<GridSingle>().foodType= (FoodType)foodIndex;
-
-                // Ìí¼Óµ½ÒÑÕ¼ÓÃ¸ñ×Ó¼¯ºÏÖÐ
+                // ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½Õ¼ï¿½Ã¸ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
                 occupiedTiles.Add(gridPos);
 
-                // Ìí¼Óµ½µ±Ç°Éú³ÉµÄÊ³ÎïÁÐ±í
+                // ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Éµï¿½Ê³ï¿½ï¿½ï¿½Ð±ï¿½
                 currentFoods.Add(foodObject);
 
 
-                break; // Éú³ÉÒ»¸öÊ³ÎïºóÍË³öÑ­»·
+                break; // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê³ï¿½ï¿½ï¿½ï¿½Ë³ï¿½Ñ­ï¿½ï¿½
             }
         }
     }
     /// <summary>
-    /// ÐèÒªÔÚÉß³Ô¶¹×ÓµÄÊ±ºò±»µ÷ÓÃ
+    /// ï¿½ï¿½Òªï¿½ï¿½ï¿½ß³Ô¶ï¿½ï¿½Óµï¿½Ê±ï¿½ò±»µï¿½ï¿½ï¿½
     /// </summary>
     /// <param name="gridPos"></param>
-    public void RemoveFood(Transform _gridTransf,Vector2Int gridPos, GameObject foodObject)
+    public void RemoveFood(Vector2Int gridPos)
     {
-        _gridTransf.GetComponent<GridSingle>().isfood= false;
-        _gridTransf.GetComponent<GridSingle>().foodType = FoodType.none;
+        GridSingle _grid=GetTileObject(gridPos).GetComponent<GridSingle>();
         if (occupiedTiles.Contains(gridPos))
         {
             occupiedTiles.Remove(gridPos);
         }
-
+        GameObject foodObject=_grid.food;
         if (currentFoods.Contains(foodObject))
         {
             currentFoods.Remove(foodObject);
         }
+        Destroy(foodObject);
+        _grid.food=null;
+        GenerateFood();
     }
 
 
 
-    #region TileÊý¾Ý
+
+    #region Tileï¿½ï¿½ï¿½ï¿½
     void InstorageTileMapData()
     {
         foreach (Transform _gridTransf in gridParentTransf)
@@ -145,7 +148,7 @@ public class TileMapGameObjectController : MonoBehaviour
         }
     }
     /// <summary>
-    /// ¸ù¾Ý¶þÎ¬×ø±ê»ñÈ¡¶ÔÓ¦ÎïÌå
+    /// ï¿½ï¿½ï¿½Ý¶ï¿½Î¬ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     /// <param name="_pos"></param>
     /// <returns></returns>
@@ -160,14 +163,14 @@ public class TileMapGameObjectController : MonoBehaviour
     }
     #endregion
 
-    #region ¶¯»­ÇÐ»»
+    #region ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
     public void FilpAllTile(Vector2Int _startPos)
     {
         StartCoroutine(FilpAllTileIEnum(_startPos));
     }
     public float flipTimeSplit = 0.5f;
     
-    // ´ÓÉÏµ½ÏÂ·´×ªµØÍ¼  4-- -6
+    // ï¿½ï¿½ï¿½Ïµï¿½ï¿½Â·ï¿½×ªï¿½ï¿½Í¼  4-- -6
     //IEnumerator FilpFromUpToBottom()
     //{
     //    Dictionary<int, List<Animator>> animDic = new Dictionary<int, List<Animator>>();
@@ -197,7 +200,7 @@ public class TileMapGameObjectController : MonoBehaviour
         isLoadLevel = true;
 
         List<Vector2Int> flipedSprite = new List<Vector2Int>();
-        //Ò»ÂÖ
+        //Ò»ï¿½ï¿½
         List<Vector2Int> _stack = new List<Vector2Int> { _startPos };
         while (_stack.Count > 0)
         {
@@ -207,7 +210,7 @@ public class TileMapGameObjectController : MonoBehaviour
                 if (TileMapData.ContainsKey(_vector2))
                 {
                     flipedSprite.Add(_vector2);
-                    //ÓÐ¸ÃÊý¾Ý²¢ÇÒ»¹Î´·´×ª¹ý
+                    //ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½Ò»ï¿½Î´ï¿½ï¿½×ªï¿½ï¿½
                     TileMapData[_vector2].GetComponent<Animator>().Play("Grid_Filp1");
 
                     var _aroundGrids = GridManager.getAroundGrids(_vector2);
@@ -229,25 +232,25 @@ public class TileMapGameObjectController : MonoBehaviour
         CurLevel++;
         isLoadLevel = false;
 
-        //todo: ¹Ø¿¨¼ÓÔØ½áÊø£¬ÆôÓÃÍæ¼Ò½»»¥
+        //todo: ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½
     }
     #endregion
 
-    #region µØ¿éÉú³É
-    [Button("³õÊ¼»¯Grid")]
+    #region ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½ï¿½
+    [Button("ï¿½ï¿½Ê¼ï¿½ï¿½Grid")]
     public void InitGenerateGridGO()
     {
         ClearGeneratedObjects();
         GenerateOffsetsAndNoise();
         GenerateGameObjectsFromTiles();
 
-        // Çå¿ÕÒÑÕ¼ÓÃ¸ñ×Ó¼¯ºÏ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½Ã¸ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½
         occupiedTiles.Clear();
         GenerateFood();
     }
 
     private string spriteName = "Sprite";
-    [Button("¶ÁÈ¡µØÍ¼Êý¾Ý")]
+    [Button("ï¿½ï¿½È¡ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½")]
     public void LoadGridData()
     {
         Transform level1Transf = GameObject.Find("Level1").transform;
@@ -286,7 +289,7 @@ public class TileMapGameObjectController : MonoBehaviour
                 _smallGoPrefabs = smallObjectLevel3;
             }
             
-            //´¦ÀíÐ¡ÎïÌå
+            //ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½
             if (Random.value < smallObjectProbability)
             {
                 int smallObjectIndex = Random.Range(0, _smallGoPrefabs.Length);
@@ -304,11 +307,11 @@ public class TileMapGameObjectController : MonoBehaviour
 
     void GenerateOffsetsAndNoise()
     {
-        // ³õÊ¼»¯Ëæ»úÆ«ÒÆ
+        // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Æ«ï¿½ï¿½
         randomOffset1 = new Vector2(Random.Range(0f, 1000f), Random.Range(0f, 1000f));
         randomOffset2 = new Vector2(Random.Range(0f, 1000f), Random.Range(0f, 1000f));
 
-        // ¶¯Ì¬µ÷ÕûÔëÉù²ÎÊýÒÔÔö¼Ó±ä»¯
+        // ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó±ä»¯
         noiseScale1 = Random.Range(0.01f, 0.2f);
         noiseScale2 = Random.Range(0.01f, 0.2f);
         noiseWeight1 = Random.Range(0.3f, 0.7f);
@@ -330,7 +333,7 @@ public class TileMapGameObjectController : MonoBehaviour
                     Vector3Int localPlace = new Vector3Int(x + bounds.xMin, y + bounds.yMin, 0);
                     Vector3 place = tilemap.CellToWorld(localPlace);
 
-                    // Ê¹ÓÃÁ½¸öPerlinÔëÉùÉú³É´øÓÐ¸ü¶à±ä»¯µÄµØÐÎ£¬²¢ÒýÈëËæ»úÆ«ÒÆ
+                    // Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Perlinï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É´ï¿½ï¿½Ð¸ï¿½ï¿½ï¿½ä»¯ï¿½Äµï¿½ï¿½Î£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ«ï¿½ï¿½
                     float noiseValue1 = Mathf.PerlinNoise((x + randomOffset1.x) * noiseScale1, (y + randomOffset1.y) * noiseScale1);
                     float noiseValue2 = Mathf.PerlinNoise((x + randomOffset2.x) * noiseScale2, (y + randomOffset2.y) * noiseScale2);
                     float combinedNoiseValue = noiseValue1 * noiseWeight1 + noiseValue2 * noiseWeight2;
@@ -345,7 +348,7 @@ public class TileMapGameObjectController : MonoBehaviour
                     tileGO.GetComponent<GridSingle>().Init(TileSprites[prefabIndex]);
                     tileGO.name = "Tile_" + localPlace.x + "_" + localPlace.y;
 
-                    generatedObjects.Add(tileGO); // ½«Éú³ÉµÄGameObjectÌí¼Óµ½ÁÐ±íÖÐ
+                    generatedObjects.Add(tileGO); // ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½GameObjectï¿½ï¿½ï¿½Óµï¿½ï¿½Ð±ï¿½ï¿½ï¿½
                 }
             }
         }
@@ -354,7 +357,7 @@ public class TileMapGameObjectController : MonoBehaviour
     string smallObjectName = "SmallObject";
     public void ReGenerateSmallGameObject(Transform _transf)
     {
-        //Çå³ý¾ÉµÄÐ¡ÎïÌåºÍÌú¹ì
+        //ï¿½ï¿½ï¿½ï¿½Éµï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Transform _transfChild = _transf.Find(spriteName);
         for(int i = _transfChild.childCount-1;i>=0;i--)
         {
@@ -362,7 +365,7 @@ public class TileMapGameObjectController : MonoBehaviour
         }
         
         
-        //Éú³ÉÐÂµÄÐ¡ÎïÌå
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Ð¡ï¿½ï¿½ï¿½ï¿½
         if (Random.value < smallObjectProbability)
         {
             int smallObjectIndex = Random.Range(0, smallObjectsPrefabsLevel1.Length);
@@ -383,7 +386,7 @@ public class TileMapGameObjectController : MonoBehaviour
             DestroyImmediate(gridParentTransf.GetChild(i).gameObject);
         }
 
-        generatedObjects.Clear(); // Çå¿ÕÁÐ±í
+        generatedObjects.Clear(); // ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
     }
     #endregion
 }

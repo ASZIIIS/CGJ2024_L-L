@@ -11,11 +11,13 @@ public class SnakeHead : MonoBehaviour
     private TileMapGameObjectController tileController;
     private int direction;
     private Vector3Int currentGrid, targetGrid;
-    private bool moveStage=true;
+    private bool moveStage=false;
     private bool isGrowing;
     private SnakeBody nextBody=null;
     private bool systemPause=false, pause=true;
+    public Transform parent;
     public int forwardTimer, forwardPeriod, waveTimer, wavePeriod;
+    public float normalScale;
     public GameObject bodyPrefeb;
     private HeadAnimation animator;
     // Start is called before the first frame update
@@ -42,33 +44,46 @@ public class SnakeHead : MonoBehaviour
         Vector3 currentPosition;
         if(!pause){
             if(forwardTimer==0){
+                moveStage=!moveStage;
+                isGrowing=false;
                 if(moveStage){
                     //reach the center of a grid
-                    if(nextBody is not null){
-                        nextBody.changeTarget(currentGrid, direction, isGrowing);
+                    if(nextBody != null){
+                        nextBody.changeTarget(targetGrid, direction);
                     }
-                    //TODO: check grow
                     currentGrid=targetGrid;
                     GridSingle currentGridInfo=tileController.GetTileObject((Vector2Int)currentGrid).GetComponent<GridSingle>();
+                    if(currentGridInfo.food != null){
+                        isGrowing=true;
+                        if(nextBody != null){
+                            nextBody.addTail((int)currentGridInfo.food.GetComponent<Food>().foodType, currentGrid, direction);
+                            nextBody.activeGrow();
+                        }else{
+                            nextBody=Instantiate(bodyPrefeb, grid.CellToWorld(currentGrid), Quaternion.identity).GetComponent<SnakeBody>();
+                            nextBody.Init(this, grid, currentGrid, direction, 0, /*waveAmplitude*/0.5f, /*wavePhase*/5f, /*normalScale*/normalScale);
+                            nextBody.GetComponent<BodyAnimation>().ChangeSprite((int)currentGridInfo.food.GetComponent<Food>().foodType);
+                            nextBody.activeGrow();
+                        }
+                        tileController.RemoveFood((Vector2Int)currentGrid);
+                        //TODO: add 1 point
+                    }
                     if(currentGridInfo.direction>0){
                         if(((int)currentGridInfo.direction-this.direction+6)%6==3){
                             //TODO: end game
                         }else{
                             this.direction=(int)currentGridInfo.direction;
                             transform.rotation=Quaternion.Euler(0f,0f,60f*(4-this.direction));
-                            Debug.Log(currentGrid.ToString()+direction);
                         }
                     }
                     targetGrid=manager.move(currentGrid, direction);
                 }
-                moveStage=!moveStage;
             }
-            if(!moveStage){
+            if(moveStage){
                 //first half (center to edge)
                 currentPosition=grid.CellToWorld(currentGrid)+GridManager.halfUnitVector[direction]*forwardTimer/forwardPeriod;
                 transform.position=currentPosition;
                 if(isGrowing){
-                    transform.localScale=Vector3.one*(1f+Mathf.Sin(Mathf.PI*forwardTimer/forwardPeriod));
+                    transform.localScale=Vector3.one*normalScale*(1f+0.4f*Mathf.Sin(Mathf.PI*forwardTimer/forwardPeriod));
                 }
             }else{
                 //second half (edge to center)
@@ -76,7 +91,7 @@ public class SnakeHead : MonoBehaviour
                 transform.position=currentPosition;
             }
         }
-        if(nextBody is not null){
+        if(nextBody != null){
             nextBody.move(moveStage, pause);
         }
         goTime();
