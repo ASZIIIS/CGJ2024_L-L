@@ -5887,7 +5887,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f41fc4d9251cabb4fa93f8e435533d8a, type: 3}
+    m_Font: {fileID: 0}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -6645,7 +6645,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f41fc4d9251cabb4fa93f8e435533d8a, type: 3}
+    m_Font: {fileID: 12800000, guid: a900afc5010f91e4ba2af4b758b2bfd6, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -12872,7 +12872,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f41fc4d9251cabb4fa93f8e435533d8a, type: 3}
+    m_Font: {fileID: 0}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -21332,7 +21332,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f41fc4d9251cabb4fa93f8e435533d8a, type: 3}
+    m_Font: {fileID: 0}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -28731,7 +28731,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f41fc4d9251cabb4fa93f8e435533d8a, type: 3}
+    m_Font: {fileID: 12800000, guid: a900afc5010f91e4ba2af4b758b2bfd6, type: 3}
     m_FontSize: 58
     m_FontStyle: 0
     m_BestFit: 0
@@ -30460,7 +30460,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1836244057}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
         m_MethodName: EffectPlayStr
         m_Mode: 5
@@ -30469,20 +30469,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 5
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1320753522}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -30936,7 +30924,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f41fc4d9251cabb4fa93f8e435533d8a, type: 3}
+    m_Font: {fileID: 12800000, guid: a900afc5010f91e4ba2af4b758b2bfd6, type: 3}
     m_FontSize: 58
     m_FontStyle: 0
     m_BestFit: 0
@@ -34893,7 +34881,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1836244057}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
         m_MethodName: EffectPlayStr
         m_Mode: 5
@@ -34902,7 +34890,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 5
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1320753522}
@@ -38639,7 +38627,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f41fc4d9251cabb4fa93f8e435533d8a, type: 3}
+    m_Font: {fileID: 12800000, guid: 88085ba788e306d42bdfbc5c20484387, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -39246,7 +39234,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f41fc4d9251cabb4fa93f8e435533d8a, type: 3}
+    m_Font: {fileID: 12800000, guid: a900afc5010f91e4ba2af4b758b2bfd6, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -43538,7 +43526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1836244058}
-  - component: {fileID: 1836244057}
+  - component: {fileID: 1836244059}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -43546,23 +43534,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1836244057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836244056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49eb67c4a5ee1c48b7f690e7eeb3a34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicVol: 0
-  effectsVol: 0
-  _soundClipList: []
-  _musicSource: {fileID: 1759173656}
-  _effectsSource: {fileID: 1388495417}
 --- !u!4 &1836244058
 Transform:
   m_ObjectHideFlags: 0
@@ -43580,6 +43551,59 @@ Transform:
   - {fileID: 1388495418}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1836244059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836244056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49eb67c4a5ee1c48b7f690e7eeb3a34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicVol: 0
+  effectsVol: 0
+  _soundClipList:
+  - _clipName: 1
+    _clipSource: {fileID: 8300000, guid: c2e8dae8da1d86b48bf6d1ab8b76460f, type: 3}
+  - _clipName: 2
+    _clipSource: {fileID: 8300000, guid: 6e12f194e40f50b44b6ed998d73ad1be, type: 3}
+  - _clipName: 3
+    _clipSource: {fileID: 8300000, guid: 228373397a1734b45940d76df3da6d7b, type: 3}
+  - _clipName: 4
+    _clipSource: {fileID: 8300000, guid: 0ae78946a8d961c4e9cf3dbcb58676c0, type: 3}
+  - _clipName: 5
+    _clipSource: {fileID: 8300000, guid: 4904f41967fb8a84d870bab62e693781, type: 3}
+  - _clipName: 6
+    _clipSource: {fileID: 8300000, guid: 4eb831bb82f239a4e90af8b0d98a1c6b, type: 3}
+  - _clipName: 7
+    _clipSource: {fileID: 8300000, guid: 7ba199549b51dcb42a4ea3d90d68366f, type: 3}
+  - _clipName: 8
+    _clipSource: {fileID: 8300000, guid: 1032d82854a918747947c132958142ba, type: 3}
+  - _clipName: 9
+    _clipSource: {fileID: 8300000, guid: 42329ee0d04cf7e4c8851530aba0c173, type: 3}
+  - _clipName: 10
+    _clipSource: {fileID: 8300000, guid: dbde58de132d2df46aa876b4031d6228, type: 3}
+  - _clipName: 11
+    _clipSource: {fileID: 8300000, guid: d6fcc7fa60a39234d83f5e700c5c16a6, type: 3}
+  - _clipName: 12
+    _clipSource: {fileID: 8300000, guid: ed5cf1605a829d348b7c33c5d9b7dd43, type: 3}
+  - _clipName: 13
+    _clipSource: {fileID: 8300000, guid: 0770735b1b629d7408068c4f1a173d69, type: 3}
+  - _clipName: 14
+    _clipSource: {fileID: 8300000, guid: cba78776ec0cf2b41b3d758bdc3ad6f5, type: 3}
+  - _clipName: 15
+    _clipSource: {fileID: 8300000, guid: 44207da48d7b96242b0a49dc7a930c4e, type: 3}
+  - _clipName: 16
+    _clipSource: {fileID: 8300000, guid: ed9c1174ce07ccc4984e207f0bcd0138, type: 3}
+  - _clipName: 17
+    _clipSource: {fileID: 8300000, guid: 337aa6bcb6a58f04ebbe8ece305ffe6f, type: 3}
+  - _clipName: 18
+    _clipSource: {fileID: 8300000, guid: 7979d761ff8c8ca48a36e40e4e27efbc, type: 3}
+  _musicSource: {fileID: 1759173656}
+  _effectsSource: {fileID: 1388495417}
 --- !u!1 &1846398046
 GameObject:
   m_ObjectHideFlags: 0
@@ -44897,7 +44921,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f41fc4d9251cabb4fa93f8e435533d8a, type: 3}
+    m_Font: {fileID: 0}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -48308,7 +48332,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1836244057}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
         m_MethodName: EffectPlayStr
         m_Mode: 5
@@ -48317,7 +48341,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 5
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1320753523}
@@ -48329,7 +48353,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Start Scene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2020836588
@@ -52411,7 +52435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4444993868704027708
 Transform:
   m_ObjectHideFlags: 0
