@@ -8,25 +8,27 @@ public class GridManager
     public static Vector3[] halfUnitVector;
     public static Vector3[] waveUnitVector;
     public static void initHalfUnitVector(){
-        halfUnitVector=new Vector3[6];
-        waveUnitVector=new Vector3[6];
+        halfUnitVector=new Vector3[7];
+        waveUnitVector=new Vector3[7];
         Grid grid=GameObject.Find("GridGameObjectController").GetComponent<Grid>();
         Vector3 centerToWorld=grid.CellToWorld(new Vector3Int(0,0,-10));
         Vector3 nextToWorld;
+        halfUnitVector[0]=(Vector3.zero);
         nextToWorld=grid.CellToWorld(new Vector3Int(1,0,-10));//Up
-        halfUnitVector[0]=(nextToWorld-centerToWorld)/2;
-        nextToWorld=grid.CellToWorld(new Vector3Int(0,1,-10));//RightUp
         halfUnitVector[1]=(nextToWorld-centerToWorld)/2;
-        nextToWorld=grid.CellToWorld(new Vector3Int(-1,1,-10));//RightDown
+        nextToWorld=grid.CellToWorld(new Vector3Int(0,1,-10));//RightUp
         halfUnitVector[2]=(nextToWorld-centerToWorld)/2;
-        nextToWorld=grid.CellToWorld(new Vector3Int(-1,0,-10));//Down
+        nextToWorld=grid.CellToWorld(new Vector3Int(-1,1,-10));//RightDown
         halfUnitVector[3]=(nextToWorld-centerToWorld)/2;
-        nextToWorld=grid.CellToWorld(new Vector3Int(-1,-1,-10));//LeftDown
+        nextToWorld=grid.CellToWorld(new Vector3Int(-1,0,-10));//Down
         halfUnitVector[4]=(nextToWorld-centerToWorld)/2;
-        nextToWorld=grid.CellToWorld(new Vector3Int(0,-1,-10));//LeftUp
+        nextToWorld=grid.CellToWorld(new Vector3Int(-1,-1,-10));//LeftDown
         halfUnitVector[5]=(nextToWorld-centerToWorld)/2;
+        nextToWorld=grid.CellToWorld(new Vector3Int(0,-1,-10));//LeftUp
+        halfUnitVector[6]=(nextToWorld-centerToWorld)/2;
+        waveUnitVector[0]=Vector3.zero;
         for(int i=0;i<6;++i){
-            waveUnitVector[i]=(halfUnitVector[(i+1)%6]+halfUnitVector[(i+2)%6])/4;
+            waveUnitVector[i+1]=(halfUnitVector[((i)%6)+1]+halfUnitVector[((i+1)%6)+1])/4;
         }
     }
     public static Vector3Int[] getAroundGrids(Vector3Int gridPosition){
@@ -63,7 +65,7 @@ public class GridManager
         int targetX=0, targetY=0;
         bool outBound=false;
         switch(direction){
-            case 0://Up
+            case 1://Up
                 if(x+1+(Mathf.Abs(y)+1)/2>size-1){
                     targetX=-x-(Mathf.Abs(y)%2);
                     targetY=y;
@@ -73,7 +75,7 @@ public class GridManager
                     targetY=y;
                 }
                 break;
-            case 1://RightUp
+            case 2://RightUp
                 if(y+1>size-1){
                     targetY=-(size/2)-x;
                     targetX=1-size-(targetY)/2;
@@ -87,7 +89,7 @@ public class GridManager
                     targetY=y+1;
                 }
                 break;
-            case 2://RightDown
+            case 3://RightDown
                 if(y+1>size-1){
                     targetY=x-(size-1)/2;
                     targetX=size-1+(targetY-1)/2;
@@ -101,7 +103,7 @@ public class GridManager
                     targetY=y+1;
                 }
                 break;
-            case 3://Down
+            case 4://Down
                 if(-x+1+(Mathf.Abs(y))/2>size-1){
                     targetX=-x-(Mathf.Abs(y)%2);
                     targetY=y;
@@ -111,7 +113,7 @@ public class GridManager
                     targetY=y;
                 }
                 break;
-            case 4://LeftDown
+            case 5://LeftDown
                 if(-y+1>size-1){
                     targetY=(size-1)/2-x;
                     targetX=size-1-(targetY+1)/2;
@@ -125,7 +127,7 @@ public class GridManager
                     targetY=y-1;
                 }
                 break;
-            case 5://LeftUp
+            case 6://LeftUp
                 if(-y+1>size-1){
                     targetY=x+(size)/2;
                     targetX=(targetY)/2+1-size;
@@ -138,6 +140,8 @@ public class GridManager
                     targetX=x+(Mathf.Abs(y)%2);
                     targetY=y-1;
                 }
+                break;
+            default:
                 break;
         }
         if(outBound){

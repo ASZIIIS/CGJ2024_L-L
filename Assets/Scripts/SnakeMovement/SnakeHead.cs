@@ -49,7 +49,16 @@ public class SnakeHead : MonoBehaviour
                     }
                     //TODO: check grow
                     currentGrid=targetGrid;
-                    //TODO: change direction
+                    GridSingle currentGridInfo=tileController.GetTileObject((Vector2Int)currentGrid).GetComponent<GridSingle>();
+                    if(currentGridInfo.direction>0){
+                        if(((int)currentGridInfo.direction-this.direction+6)%6==3){
+                            //TODO: end game
+                        }else{
+                            this.direction=(int)currentGridInfo.direction;
+                            transform.rotation=Quaternion.Euler(0f,0f,60f*(4-this.direction));
+                            Debug.Log(currentGrid.ToString()+direction);
+                        }
+                    }
                     targetGrid=manager.move(currentGrid, direction);
                 }
                 moveStage=!moveStage;

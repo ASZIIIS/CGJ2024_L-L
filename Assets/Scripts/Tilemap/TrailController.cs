@@ -30,11 +30,11 @@ public class TrailController : MonoBehaviour
         MouseGridGo = tileMapController.GetTileObject(new Vector2Int(gridPosition.x, gridPosition.y));
         mouseGo.SetActive(MouseGridGo!=null);
 
-        //Èç¹û²»Îª¿Õ£¬¿ÉÒÔ·ÅÖÃ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½
         if(MouseGridGo !=null)
         {
             mouseGo.transform.position = MouseGridGo.transform.position;
-            if(Input.GetMouseButtonDown(0) && MouseGrid.directtion == Directions.None)
+            if(Input.GetMouseButtonDown(0) && MouseGrid.direction == Directions.None)
             {
                 SetTrail(MouseGrid, CurDirect);
             }

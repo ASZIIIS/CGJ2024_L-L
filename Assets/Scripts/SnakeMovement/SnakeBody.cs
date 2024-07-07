@@ -59,6 +59,7 @@ public class SnakeBody : MonoBehaviour
         }
         growUp=true;
         direction=newDirection;
+        transform.rotation=Quaternion.Euler(0f,0f,60f*(4-this.direction));
         currentGrid=targetGrid;
         targetGrid=newTarget;
         return;
@@ -97,7 +98,7 @@ public class SnakeBody : MonoBehaviour
             }
         }
         currentPosition+=GridManager.waveUnitVector[direction]
-            *Mathf.Sin((float)(wavePhase*depth+head.waveTimer)*Mathf.PI)*waveAmplitude;
+            *Mathf.Sin((float)(wavePhase*depth+head.waveTimer)*Mathf.PI/head.wavePeriod)*waveAmplitude;
         transform.position=currentPosition;
         if(nextBody is not null){
             nextBody.move(moveStage, pause);

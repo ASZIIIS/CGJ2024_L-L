@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &7171219
 Animator:
   serializedVersion: 5
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &17721011
 Animator:
   serializedVersion: 5
@@ -925,7 +925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &30446522
 Animator:
   serializedVersion: 5
@@ -1312,7 +1312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &42658527
 Animator:
   serializedVersion: 5
@@ -2725,7 +2725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &106737678
 Animator:
   serializedVersion: 5
@@ -3364,7 +3364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &149144302
 Animator:
   serializedVersion: 5
@@ -3499,7 +3499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &149781459
 Animator:
   serializedVersion: 5
@@ -4217,7 +4217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &181899063
 Animator:
   serializedVersion: 5
@@ -4688,7 +4688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &191111070
 Animator:
   serializedVersion: 5
@@ -5243,7 +5243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &204669809
 Animator:
   serializedVersion: 5
@@ -5462,7 +5462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &215999634
 Animator:
   serializedVersion: 5
@@ -6017,7 +6017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &241264814
 Animator:
   serializedVersion: 5
@@ -6824,7 +6824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &264486412
 Animator:
   serializedVersion: 5
@@ -6959,7 +6959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &270034898
 Animator:
   serializedVersion: 5
@@ -8218,7 +8218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &332794323
 Animator:
   serializedVersion: 5
@@ -8353,7 +8353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &332894046
 Animator:
   serializedVersion: 5
@@ -8778,7 +8778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &341949870
 Animator:
   serializedVersion: 5
@@ -8997,7 +8997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &363570830
 Animator:
   serializedVersion: 5
@@ -9216,7 +9216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &368377601
 Animator:
   serializedVersion: 5
@@ -10527,7 +10527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &437236932
 Animator:
   serializedVersion: 5
@@ -11625,7 +11625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &513048577
 Animator:
   serializedVersion: 5
@@ -11760,7 +11760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &515673692
 Animator:
   serializedVersion: 5
@@ -11979,7 +11979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &526519060
 Animator:
   serializedVersion: 5
@@ -12450,7 +12450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &543414950
 Animator:
   serializedVersion: 5
@@ -12677,7 +12677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &545175855
 Animator:
   serializedVersion: 5
@@ -13568,7 +13568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &574436595
 Animator:
   serializedVersion: 5
@@ -14627,7 +14627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &624730064
 Animator:
   serializedVersion: 5
@@ -14930,7 +14930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &647523627
 Animator:
   serializedVersion: 5
@@ -15806,7 +15806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &707362387
 Animator:
   serializedVersion: 5
@@ -15941,7 +15941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &716218498
 Animator:
   serializedVersion: 5
@@ -16160,7 +16160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &731437065
 Animator:
   serializedVersion: 5
@@ -16548,7 +16548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &741321133
 Animator:
   serializedVersion: 5
@@ -17355,7 +17355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &807760913
 Animator:
   serializedVersion: 5
@@ -18078,7 +18078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &841987101
 Animator:
   serializedVersion: 5
@@ -18717,7 +18717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &877759109
 Animator:
   serializedVersion: 5
@@ -19272,7 +19272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &898506907
 Animator:
   serializedVersion: 5
@@ -19491,7 +19491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &903416792
 Animator:
   serializedVersion: 5
@@ -19963,7 +19963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &930399902
 Animator:
   serializedVersion: 5
@@ -20182,7 +20182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &936242597
 Animator:
   serializedVersion: 5
@@ -20317,7 +20317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &937305371
 Animator:
   serializedVersion: 5
@@ -20957,7 +20957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &963173006
 Animator:
   serializedVersion: 5
@@ -21848,7 +21848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1005180837
 Animator:
   serializedVersion: 5
@@ -24063,7 +24063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1077895260
 Animator:
   serializedVersion: 5
@@ -24198,7 +24198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1079303176
 Animator:
   serializedVersion: 5
@@ -24669,7 +24669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1093708868
 Animator:
   serializedVersion: 5
@@ -27474,7 +27474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1175142383
 Animator:
   serializedVersion: 5
@@ -27777,7 +27777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1177260659
 Animator:
   serializedVersion: 5
@@ -28249,7 +28249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1199253687
 Animator:
   serializedVersion: 5
@@ -28804,7 +28804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1228302054
 Animator:
   serializedVersion: 5
@@ -29023,7 +29023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1244877707
 Animator:
   serializedVersion: 5
@@ -29747,7 +29747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1279474990
 Animator:
   serializedVersion: 5
@@ -29966,7 +29966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1280742382
 Animator:
   serializedVersion: 5
@@ -30390,7 +30390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1301133465
 Animator:
   serializedVersion: 5
@@ -31197,7 +31197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1335579493
 Animator:
   serializedVersion: 5
@@ -31332,7 +31332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1336509048
 Animator:
   serializedVersion: 5
@@ -31635,7 +31635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1359081529
 Animator:
   serializedVersion: 5
@@ -31939,7 +31939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1370807881
 Animator:
   serializedVersion: 5
@@ -32243,7 +32243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1383773850
 Animator:
   serializedVersion: 5
@@ -32714,7 +32714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1397010283
 Animator:
   serializedVersion: 5
@@ -33606,7 +33606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1453946787
 Animator:
   serializedVersion: 5
@@ -33741,7 +33741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1464887606
 Animator:
   serializedVersion: 5
@@ -34632,7 +34632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1500173264
 Animator:
   serializedVersion: 5
@@ -34767,7 +34767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1502922595
 Animator:
   serializedVersion: 5
@@ -35070,7 +35070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1506411448
 Animator:
   serializedVersion: 5
@@ -35205,7 +35205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1507924952
 Animator:
   serializedVersion: 5
@@ -35508,7 +35508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1526395611
 Animator:
   serializedVersion: 5
@@ -37439,7 +37439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1577726422
 Animator:
   serializedVersion: 5
@@ -37658,7 +37658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1578527527
 Animator:
   serializedVersion: 5
@@ -38045,7 +38045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1595794557
 Animator:
   serializedVersion: 5
@@ -38348,7 +38348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1615441458
 Animator:
   serializedVersion: 5
@@ -38483,7 +38483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1621955946
 Animator:
   serializedVersion: 5
@@ -38870,7 +38870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1633458750
 Animator:
   serializedVersion: 5
@@ -39173,7 +39173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1646785925
 Animator:
   serializedVersion: 5
@@ -39980,7 +39980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1684125907
 Animator:
   serializedVersion: 5
@@ -40199,7 +40199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1695236967
 Animator:
   serializedVersion: 5
@@ -42214,7 +42214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1815029933
 Animator:
   serializedVersion: 5
@@ -42572,6 +42572,150 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1843808605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1843808608}
+  - component: {fileID: 1843808607}
+  - component: {fileID: 1843808606}
+  - component: {fileID: 1843808610}
+  - component: {fileID: 1843808609}
+  m_Layer: 0
+  m_Name: SnakeHead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &1843808606
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843808605}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58e228debb058fa478bf1e1a00541389, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &1843808607
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843808605}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: d8f196c5a90c1d2438b7089ef5171635, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1843808608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843808605}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.23, y: 0.23, z: 0.23}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1843808609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843808605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344e81c7a7796dc4b86fafe8c8a99236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardTimer: 0
+  forwardPeriod: 32
+  waveTimer: 0
+  wavePeriod: 25
+  bodyPrefeb: {fileID: 6353530300967096957, guid: 8c190a79096995147b6dcbefbd42b738, type: 3}
+--- !u!114 &1843808610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843808605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ec088b2b8ffd847b64f3f58e153c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runtimeAnimatorControllers:
+  - {fileID: 9100000, guid: 191f426688acdea49bc9e3fd0a1bb8ec, type: 2}
+  - {fileID: 9100000, guid: 4117113ca0210aa4ea9e17e9d96e3b23, type: 2}
+  - {fileID: 9100000, guid: 4297c94e83442cb488c09f1b3476a14f, type: 2}
+  - {fileID: 9100000, guid: 58e228debb058fa478bf1e1a00541389, type: 2}
+  - {fileID: 9100000, guid: 66b705a60d6027a49a9375d1013c89e0, type: 2}
+  - {fileID: 9100000, guid: bf0fbca97494e0549aa75a174bad9c5b, type: 2}
 --- !u!1 &1845544855
 GameObject:
   m_ObjectHideFlags: 0
@@ -43144,7 +43288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1872891611
 Animator:
   serializedVersion: 5
@@ -43447,7 +43591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1876833713
 Animator:
   serializedVersion: 5
@@ -43582,7 +43726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1883189931
 Animator:
   serializedVersion: 5
@@ -43801,7 +43945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1890747824
 Animator:
   serializedVersion: 5
@@ -44141,7 +44285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1908571701
 Animator:
   serializedVersion: 5
@@ -44696,7 +44840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1923304980
 Animator:
   serializedVersion: 5
@@ -44910,7 +45054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1928801203
 Animator:
   serializedVersion: 5
@@ -45214,7 +45358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1953976229
 Animator:
   serializedVersion: 5
@@ -46059,7 +46203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &1974300484
 Animator:
   serializedVersion: 5
@@ -46615,7 +46759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &2013580369
 Animator:
   serializedVersion: 5
@@ -47170,7 +47314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &2054544310
 Animator:
   serializedVersion: 5
@@ -47641,7 +47785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &2074833073
 Animator:
   serializedVersion: 5
@@ -48533,7 +48677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &2097295277
 Animator:
   serializedVersion: 5
@@ -48836,7 +48980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &2110461166
 Animator:
   serializedVersion: 5
@@ -49392,7 +49536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5d484d207c486419159d6ab147f6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directtion: 0
+  direction: 0
 --- !u!95 &2130169759
 Animator:
   serializedVersion: 5
@@ -49765,3 +49909,4 @@ SceneRoots:
   - {fileID: 44838665}
   - {fileID: 650570646}
   - {fileID: 4444993868704027708}
+  - {fileID: 1843808608}

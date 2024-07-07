@@ -18,7 +18,7 @@ public class HeadAnimation : MonoBehaviour
         
     }
     public void ChangeAnimation(int index){
-        animator.runtimeAnimatorController = runtimeAnimatorControllers[index];
+        animator.runtimeAnimatorController = new AnimatorOverrideController(runtimeAnimatorControllers[index]);
     }
     public void setAnimation(bool state){
         animator.SetBool("Leader", state);

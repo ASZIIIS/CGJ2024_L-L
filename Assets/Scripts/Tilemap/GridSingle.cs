@@ -11,7 +11,7 @@ public class GridSingle : MonoBehaviour
     //     grid2,
     //     grid3
     // }
-    public Directions directtion;
+    public Directions direction;
 
     public void Init(Sprite _sprite)
     {
@@ -21,6 +21,6 @@ public class GridSingle : MonoBehaviour
 
     public void SetTrail(Directions _direct)
     {
-        directtion = _direct;
+        direction = _direct;
     }
 }
