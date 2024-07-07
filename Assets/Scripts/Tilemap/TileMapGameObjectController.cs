@@ -145,7 +145,7 @@ public class TileMapGameObjectController : MonoBehaviour
     public void RemoveFood(Vector2Int gridPos)
     {
         foodCount++;
-        if (foodCount >= 1)
+        if (foodCount >= 8)
         {
             FilpAllTile(FilpStartPos);
         }
