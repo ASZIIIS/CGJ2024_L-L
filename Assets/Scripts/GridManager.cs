@@ -27,8 +27,8 @@ public class GridManager
         nextToWorld=grid.CellToWorld(new Vector3Int(0,-1,-10));//LeftUp
         halfUnitVector[6]=(nextToWorld-centerToWorld)/2;
         waveUnitVector[0]=Vector3.zero;
-        for(int i=0;i<6;++i){
-            waveUnitVector[i+1]=(halfUnitVector[((i)%6)+1]+halfUnitVector[((i+1)%6)+1])/4;
+        for(int i=1;i<=6;++i){
+            waveUnitVector[i]=(Vector3)Vector2.Perpendicular((Vector2)halfUnitVector[i]);
         }
     }
     public static Vector3Int[] getAroundGrids(Vector3Int gridPosition){

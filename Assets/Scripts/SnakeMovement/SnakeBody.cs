@@ -13,10 +13,12 @@ public class SnakeBody : MonoBehaviour
     private float waveAmplitude, wavePhase, normalScale;
     private int growState=0;
     private bool growUp=false;
+    public bool awake=false;
     public void Init(
             SnakeHead head, 
             Grid grid, 
-            Vector3Int birthGrid, 
+            Vector3Int birthGrid,
+            int birthDirection, 
             int depth, 
             float waveAmplitude, 
             float wavePhase,
@@ -26,9 +28,12 @@ public class SnakeBody : MonoBehaviour
         this.grid=grid;
         this.depth=depth;
         this.targetGrid=birthGrid;
+        this.direction=birthDirection;
+        transform.rotation=Quaternion.Euler(0f,0f,60f*(4-this.direction));
         this.waveAmplitude=waveAmplitude;
         this.wavePhase=wavePhase;
         this.normalScale=normalScale;
+        this.transform.SetParent(head.parent);
     }
     // Start is called before the first frame update
     void Start()
@@ -41,21 +46,18 @@ public class SnakeBody : MonoBehaviour
     {
         
     }
-    public void changeTarget(Vector3Int newTarget, int newDirection, bool isGrowing){
-        if(nextBody is not null){
-            nextBody.changeTarget(currentGrid, direction, (growState==2));
-        }else{
-            if(growState==2){
-                nextBody=Instantiate(head.bodyPrefeb, grid.CellToWorld(currentGrid), Quaternion.identity).GetComponent<SnakeBody>();
-                nextBody.Init(head, grid, currentGrid, depth+1, waveAmplitude, wavePhase, normalScale);
-            }
+    public void changeTarget(Vector3Int newTarget, int newDirection){
+        if(!awake){
+            return;
         }
-        if(isGrowing){
-            growState=2;
-        }else{
+        if(nextBody != null){
+            nextBody.changeTarget(targetGrid, direction);
             if(growState>0){
-                growState-=1;
+            if(growState==2){
+                nextBody.activeGrow();
             }
+            growState--;
+        }
         }
         growUp=true;
         direction=newDirection;
@@ -65,43 +67,62 @@ public class SnakeBody : MonoBehaviour
         return;
     }
     public void move(bool moveStage, bool pause){
+        if(!awake){
+            return;
+        }
         Vector3 currentPosition;
         if(!growUp){
             if(!pause){
-                if(!moveStage){
+                if(moveStage){
                     transform.localScale=Vector3.one*normalScale
-                        *(head.forwardTimer/head.forwardPeriod)/2;
+                        *((float)head.forwardTimer/head.forwardPeriod)/2;
                 }else{
                     transform.localScale=Vector3.one*normalScale
-                        *(1f+head.forwardTimer/head.forwardPeriod)/2;
+                        *((float)head.forwardTimer/head.forwardPeriod+1f)/2;
                 }
-                
-            }
-        }
-        if(!moveStage){
-            //first half (center to edge)
-            currentPosition=grid.CellToWorld(currentGrid)
-                +GridManager.halfUnitVector[direction]
-                *head.forwardTimer/head.forwardPeriod;
-            if(!pause&&growState==1){
-                transform.localScale=Vector3.one*normalScale
-                    *(1f+Mathf.Sin(Mathf.PI*0.5f*(1+head.forwardTimer/head.forwardPeriod)));
             }
         }else{
-            //second half (edge to center)
-            currentPosition=grid.CellToWorld(targetGrid)
-                -GridManager.halfUnitVector[direction]
-                *(head.forwardPeriod-head.forwardTimer)/head.forwardPeriod;
-            if(!pause&&growState==2){
-                transform.localScale=Vector3.one*normalScale
-                    *(1f+Mathf.Sin(Mathf.PI*0.5f*(head.forwardTimer/head.forwardPeriod)));
+            if(moveStage){
+                //first half (center to edge)
+                currentPosition=grid.CellToWorld(currentGrid)
+                    +GridManager.halfUnitVector[direction]
+                    *head.forwardTimer/head.forwardPeriod;
+                if(!pause&&growState==1){
+                    transform.localScale=Vector3.one*normalScale
+                        *(1f+0.3f*Mathf.Sin(Mathf.PI*(1+(float)head.forwardTimer/head.forwardPeriod)));
+                }
+            }else{
+                //second half (edge to center)
+                currentPosition=grid.CellToWorld(targetGrid)
+                    -GridManager.halfUnitVector[direction]
+                    *(head.forwardPeriod-head.forwardTimer)/head.forwardPeriod;
+                if(!pause&&growState==2){
+                    transform.localScale=Vector3.one*normalScale
+                        *(1f+0.3f*Mathf.Sin(Mathf.PI*((float)head.forwardTimer/head.forwardPeriod)));
+                }
+            }
+            currentPosition+=GridManager.waveUnitVector[direction]
+                *Mathf.Sin((float)((wavePhase*depth+head.waveTimer)%head.wavePeriod)/head.wavePeriod*Mathf.PI*2)*waveAmplitude;
+            transform.position=currentPosition;
+            if(nextBody != null){
+                nextBody.move(moveStage, pause);
             }
         }
-        currentPosition+=GridManager.waveUnitVector[direction]
-            *Mathf.Sin((float)(wavePhase*depth+head.waveTimer)*Mathf.PI/head.wavePeriod)*waveAmplitude;
-        transform.position=currentPosition;
-        if(nextBody is not null){
-            nextBody.move(moveStage, pause);
+    }
+    public void addTail(int type, Vector3Int birthGrid, int headDirection){
+        if(nextBody != null){
+            nextBody.addTail(type, birthGrid, headDirection);
+        }else{
+            nextBody=Instantiate(head.bodyPrefeb, grid.CellToWorld(birthGrid), Quaternion.identity).GetComponent<SnakeBody>();
+            nextBody.Init(head, grid, birthGrid, headDirection, depth+1, waveAmplitude, wavePhase, normalScale);
+            nextBody.GetComponent<BodyAnimation>().ChangeSprite(type);
+        }
+    }
+    public void activeGrow(){
+        if(!awake){
+            awake=true;
+        }else{
+            growState=2;
         }
     }
 }
