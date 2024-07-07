@@ -5,6 +5,7 @@ using UnityEngine;
 public class BodyAnimation : MonoBehaviour
 {
     public List<Sprite> sprites;
+    private SpriteRenderer renderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class BodyAnimation : MonoBehaviour
         
     }
     public void ChangeSprite(int index){
-        
+        renderer=GetComponent<SpriteRenderer>();
+        renderer.sprite=sprites[index];
     }
 }
