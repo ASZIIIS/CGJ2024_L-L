@@ -16,7 +16,6 @@ public class SnakeBody : MonoBehaviour
     public bool awake=false;
     public void Init(
             SnakeHead head, 
-            Grid grid, 
             Vector3Int birthGrid,
             int birthDirection, 
             int depth, 
@@ -25,7 +24,6 @@ public class SnakeBody : MonoBehaviour
             float normalScale
         ){
         this.head=head;
-        this.grid=grid;
         this.depth=depth;
         this.targetGrid=birthGrid;
         this.direction=birthDirection;
@@ -84,7 +82,7 @@ public class SnakeBody : MonoBehaviour
         }else{
             if(moveStage){
                 //first half (center to edge)
-                currentPosition=grid.CellToWorld(currentGrid)
+                currentPosition=head.CellToWorld(currentGrid)
                     +GridManager.halfUnitVector[direction]
                     *head.forwardTimer/head.forwardPeriod;
                 if(!pause&&growState==1){
@@ -93,7 +91,7 @@ public class SnakeBody : MonoBehaviour
                 }
             }else{
                 //second half (edge to center)
-                currentPosition=grid.CellToWorld(targetGrid)
+                currentPosition=head.CellToWorld(targetGrid)
                     -GridManager.halfUnitVector[direction]
                     *(head.forwardPeriod-head.forwardTimer)/head.forwardPeriod;
                 if(!pause&&growState==2){
@@ -113,8 +111,8 @@ public class SnakeBody : MonoBehaviour
         if(nextBody != null){
             nextBody.addTail(type, birthGrid, headDirection);
         }else{
-            nextBody=Instantiate(head.bodyPrefeb, grid.CellToWorld(birthGrid), Quaternion.identity).GetComponent<SnakeBody>();
-            nextBody.Init(head, grid, birthGrid, headDirection, depth+1, waveAmplitude, wavePhase, normalScale);
+            nextBody=Instantiate(head.bodyPrefeb, head.CellToWorld(birthGrid), Quaternion.identity).GetComponent<SnakeBody>();
+            nextBody.Init(head, birthGrid, headDirection, depth+1, waveAmplitude, wavePhase, normalScale);
             nextBody.GetComponent<BodyAnimation>().ChangeSprite(type);
         }
     }
@@ -124,5 +122,14 @@ public class SnakeBody : MonoBehaviour
         }else{
             growState=2;
         }
+    }
+    public void updateCatOn(){
+        if(nextBody!=null){
+            if(nextBody.awake&&growUp){
+                nextBody.updateCatOn();
+                return;
+            }
+        }
+        head.setGridCatOn(currentGrid, false);
     }
 }
