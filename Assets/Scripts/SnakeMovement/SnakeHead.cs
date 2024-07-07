@@ -60,7 +60,7 @@ public class SnakeHead : MonoBehaviour
                             nextBody.activeGrow();
                         }else{
                             nextBody=Instantiate(bodyPrefeb, grid.CellToWorld(currentGrid), Quaternion.identity).GetComponent<SnakeBody>();
-                            nextBody.Init(this, grid, currentGrid, direction, 0, /*waveAmplitude*/0.5f, /*wavePhase*/5f, /*normalScale*/normalScale);
+                            nextBody.Init(this, grid, currentGrid, direction, 0, /*waveAmplitude*/0.3f, /*wavePhase*/5f, /*normalScale*/normalScale);
                             nextBody.GetComponent<BodyAnimation>().ChangeSprite((int)currentGridInfo.food.GetComponent<Food>().foodType);
                             nextBody.activeGrow();
                         }
