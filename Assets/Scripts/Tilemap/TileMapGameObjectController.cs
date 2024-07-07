@@ -2,10 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.WSA;
 using Random = UnityEngine.Random;
 
 public class TileMapGameObjectController : MonoBehaviour
@@ -51,6 +49,8 @@ public class TileMapGameObjectController : MonoBehaviour
     public float foodGenerationProbability = 0.1f; // ʳ�����ɸ���
     private List<GameObject> currentFoods = new List<GameObject>(); // ��ǰ���ɵ�ʳ���б�
     public float foodGenerationInterval = 10.0f; // ʳ�����ɼ��
+
+    public GameObject snakeCopy;
     void Start()
     {
         InstorageTileMapData();
@@ -65,11 +65,24 @@ public class TileMapGameObjectController : MonoBehaviour
             GenerateFood();
         }
     }
-    void Update()
+
+
+    public void LevelReGenerate()
     {
-        if (Input.GetKeyDown(KeyCode.RightShift))
+        //清除
+        Transform snakeTransf = GameObject.Find("SnakeParent").transform;
+        snakeTransf.gameObject.SetActive(false);
+        Destroy(snakeTransf);
+        var newSnake = GameObject.Instantiate(snakeCopy);
+        newSnake.SetActive(true);
+        
+        //地块归位
+        foreach (var _tileMap in TileMapData)
         {
-            FilpAllTile(FilpStartPos);
+            GridSingle _grid = _tileMap.Value.GetComponentInChildren<GridSingle>();
+            _grid.direction = Directions.None;
+            _grid.catOn = false;
+            _grid.GetComponentInChildren<SpriteRenderer>().color = Color.white;
         }
     }
     void GenerateFood()
@@ -84,7 +97,8 @@ public class TileMapGameObjectController : MonoBehaviour
             );
 
             if (occupiedTiles.Contains(gridPos)) continue;
-
+            if (GetTileObject(gridPos).GetComponent<GridSingle>().catOn ) continue;
+            
             if (Random.value < foodGenerationProbability)
             {
                 int foodIndex = Random.Range(0, foodPrefabs.Length);
@@ -112,12 +126,20 @@ public class TileMapGameObjectController : MonoBehaviour
             }
         }
     }
+
+    private int foodCount = 0;
     /// <summary>
     /// ��Ҫ���߳Զ��ӵ�ʱ�򱻵���
     /// </summary>
     /// <param name="gridPos"></param>
     public void RemoveFood(Vector2Int gridPos)
     {
+        foodCount++;
+        if (foodCount >= 10)
+        {
+            FilpAllTile(FilpStartPos);
+        }
+        
         GridSingle _grid = GetTileObject(gridPos).GetComponent<GridSingle>();
         if (occupiedTiles.Contains(gridPos))
         {

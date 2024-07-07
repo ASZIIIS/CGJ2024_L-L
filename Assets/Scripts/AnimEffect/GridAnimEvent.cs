@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class GridAnimEvent : MonoBehaviour
 {
-    public Sprite level1TargetSprite,level2TargetSprite;
+    public Sprite level0TargetSprite,level1TargetSprite,level2TargetSprite;
     private TileMapGameObjectController tileMapController;
     private void Awake()
     {
+        level0TargetSprite = GetComponentInChildren<SpriteRenderer>().sprite;
         tileMapController = FindObjectOfType<TileMapGameObjectController>();
     }
 
@@ -18,7 +19,8 @@ public class GridAnimEvent : MonoBehaviour
         {
             case 3:
                 //todo //游戏结束
-                Debug.Log("Game Over");
+                _targetSprite = level0TargetSprite;
+                TileMapGameObjectController.CurLevel = 0;
                 return;
                 break;
             case 1:
@@ -34,6 +36,7 @@ public class GridAnimEvent : MonoBehaviour
 
         //删除旧的小物体，新建新的小物体
         tileMapController.ReGenerateSmallGameObject(transform);
+        tileMapController.LevelReGenerate();
     }
      
 }

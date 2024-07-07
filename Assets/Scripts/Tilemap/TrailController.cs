@@ -54,6 +54,11 @@ public class TrailController : MonoBehaviour
     }
     void SetTrail(GridSingle _gridSingle,Directions _direct)
     {
+        if (_gridSingle.catOn)
+        {
+            return;
+        }
+        
         Transform _spriteParent = _gridSingle.transform.Find("Sprite");
         GameObject _trailGo = GameObject.Instantiate(TrailPrefab, _gridSingle.transform.position,Quaternion.identity, _spriteParent);
         _trailGo.GetComponent<SpriteRenderer>().sprite = DirectToSprite(_direct);
