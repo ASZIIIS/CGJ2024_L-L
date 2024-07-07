@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -57,6 +58,15 @@ public class TileMapGameObjectController : MonoBehaviour
         GenerateFood();
         StartCoroutine(GenerateFoodPeriodically());
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("mainScene");
+        }
+    }
+
     IEnumerator GenerateFoodPeriodically()
     {
         while (true)
@@ -135,7 +145,7 @@ public class TileMapGameObjectController : MonoBehaviour
     public void RemoveFood(Vector2Int gridPos)
     {
         foodCount++;
-        if (foodCount >= 10)
+        if (foodCount >= 1)
         {
             FilpAllTile(FilpStartPos);
         }
@@ -188,6 +198,7 @@ public class TileMapGameObjectController : MonoBehaviour
     #region �����л�
     public void FilpAllTile(Vector2Int _startPos)
     {
+        StartCoroutine(FindObjectOfType<ScrollManager>().CatBottom());
         StartCoroutine(FilpAllTileIEnum(_startPos));
     }
     public float flipTimeSplit = 0.5f;
@@ -253,7 +264,7 @@ public class TileMapGameObjectController : MonoBehaviour
 
         CurLevel++;
         isLoadLevel = false;
-
+        LevelReGenerate();
         //todo: �ؿ����ؽ�����������ҽ���
     }
     #endregion
